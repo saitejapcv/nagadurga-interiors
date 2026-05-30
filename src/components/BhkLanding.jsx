@@ -1,0 +1,212 @@
+import React, { useRef, useEffect, useState } from 'react';
+import { motion, useInView, animate } from 'framer-motion';
+
+const projects = [
+  {
+    title: 'The Jubilee Hills Minimalist',
+    description: 'A study in white and oak, maximizing natural light in a compact 850 sq.ft. space.',
+    img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
+    city: 'Jubilee Hills',
+    budget: '₹8.2 Lakh',
+    timeline: '40 Days',
+  },
+  {
+    title: 'Kondapur Lakeside Residence',
+    description: 'Integrating industrial textures with warm lighting for a young professional couple.',
+    img: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80',
+    city: 'Kondapur',
+    budget: '₹7.5 Lakh',
+    timeline: '45 Days',
+  },
+];
+
+const statItems = [
+  { value: 420, suffix: '+', label: 'Projects Completed in Hyderabad' },
+  { value: 45, suffix: ' Days', label: 'Average Timeline' },
+  { value: 6.5, prefix: '₹', suffix: ' Lakhs', label: 'Starting From', decimal: true },
+];
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.2 } }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 12 } }
+};
+
+const AnimatedStat = ({ value, suffix, prefix = '', decimal }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [display, setDisplay] = useState('0');
+
+  useEffect(() => {
+    if (!isInView) return;
+    const controls = animate(0, value, {
+      duration: 2,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (latest) => {
+        setDisplay(decimal ? latest.toFixed(1) : Math.floor(latest).toString());
+      },
+    });
+    return () => controls.stop();
+  }, [isInView, value, decimal]);
+
+  return <span ref={ref}>{prefix}{display}{suffix}</span>;
+};
+
+const BhkLanding = ({ onNavigate }) => {
+  return (
+    <div className="page-enter">
+      <div className="container">
+        <motion.header
+          className="bhk-header"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'spring', damping: 12 }}
+        >
+          <div className="mono">Hyderabad / 2BHK Specialist</div>
+          <h1>Optimized Living for the Hyderabad Home.</h1>
+        </motion.header>
+
+        <section className="bhk-intro">
+          <motion.p
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: 'spring', damping: 12, delay: 0.2 }}
+          >
+            Space is luxury in Hyderabad's booming neighborhoods. We specialize in
+            transforming 2BHK apartments in Jubilee Hills, Gachibowli, and Kondapur
+            into expansive, light-filled sanctuaries using smart multi-functional design.
+          </motion.p>
+          <motion.div
+            className="bhk-stats"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: 'spring', damping: 12, delay: 0.4 }}
+          >
+            {statItems.map((s, i) => (
+              <div key={i} style={{ marginBottom: '0.5rem' }}>
+                <AnimatedStat value={s.value} suffix={s.suffix} prefix={s.prefix} decimal={s.decimal} />
+                <span style={{ opacity: 0.6, marginLeft: '0.5rem' }}>{s.label}</span>
+              </div>
+            ))}
+          </motion.div>
+        </section>
+
+        <motion.div
+          className="project-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {projects.map((project, i) => (
+            <motion.div
+              className="project-card"
+              key={i}
+              variants={cardVariants}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            >
+              <div className="project-card-image">
+                <motion.img
+                  src={project.img}
+                  alt={project.title}
+                  loading="lazy"
+                  initial={{ clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' }}
+                  whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: i * 0.2 }}
+                />
+              </div>
+              <div className="project-details">
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <div className="metadata">
+                  <div className="metadata-item">
+                    <span>AREA</span>
+                    {project.city.toUpperCase()}
+                  </div>
+                  <div className="metadata-item">
+                    <span>BUDGET</span>
+                    {project.budget.toUpperCase()}
+                  </div>
+                  <div className="metadata-item">
+                    <span>TIMELINE</span>
+                    {project.timeline.toUpperCase()}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      <motion.section
+        className="experience-section"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ type: 'spring', damping: 12 }}
+      >
+        <div className="container">
+          <div className="mono" style={{ marginBottom: '1rem', opacity: 0.7 }}>
+            Experience Center
+          </div>
+          <h2>Visit Us in Jubilee Hills.</h2>
+          <p>
+            Touch our materials, test our hardware, and meet our lead designers at
+            our Hyderabad Experience Center in the heart of Jubilee Hills.
+          </p>
+          <motion.a
+            href="https://maps.google.com/?q=Jubilee+Hills+Hyderabad"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Book a Showroom Visit
+          </motion.a>
+        </div>
+      </motion.section>
+
+      <div className="container">
+        <motion.div
+          className="cta-box"
+          initial={{ opacity: 0, clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)' }}
+          whileInView={{ opacity: 1, clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.65, 0, 0.35, 1] }}
+        >
+          <h2>Ready for your Hyderabad home?</h2>
+          <p>Start with our interactive price tool or chat with us directly.</p>
+          <div className="cta-box-actions">
+            <motion.a
+              className="btn btn-primary"
+              onClick={() => onNavigate('calculator')}
+              style={{ cursor: 'pointer' }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get Estimate
+            </motion.a>
+            <motion.a
+              href="https://wa.me/910000000000?text=Hi,%20I'm%20interested%20in%20a%202BHK%20interior%20in%20Hyderabad."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              WhatsApp Us
+            </motion.a>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export default BhkLanding;

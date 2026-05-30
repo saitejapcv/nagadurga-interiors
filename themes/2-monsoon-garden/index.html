@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="Nagadurga Interiors | Best Interior Designer in Hyderabad">
+  <meta name="description" content="Nagadurga Interiors — Hyderabad's trusted interior design company. Full-home interiors with Vastu-first planning, 45-day delivery, and transparent pricing.">
+  <meta name="keywords" content="interior design Hyderabad, home interiors, Vastu compliant interiors, modular kitchen Hyderabad, Nagadurga Interiors">
+  <title>Nagadurga Interiors | Best Interior Designer in Hyderabad</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep-teal: #0d7377;
+      --coral: #ff6b6b;
+      --sage-green: #a8c5a0;
+      --warm-white: #fef9f4;
+      --surface: #ffffff;
+      --border: #d4e4d1;
+      --deep-teal-rgb: 13, 115, 119;
+      --coral-rgb: 255, 107, 107;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--warm-white);
+      color: #333;
+      line-height: 1.6;
+      opacity: 0;
+      animation: pageLoad 0.8s ease forwards;
+    }
+
+    @keyframes pageLoad {
+      to { opacity: 1; }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar__logo {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--deep-teal);
+    }
+    .navbar__logo span {
+      color: var(--coral);
+    }
+    .navbar__links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .navbar__links a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #555;
+      transition: color 0.3s;
+    }
+    .navbar__links a:hover {
+      color: var(--deep-teal);
+    }
+    .navbar__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .navbar__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--deep-teal);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    .navbar__mobile {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--surface);
+      z-index: 999;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+    }
+    .navbar__mobile.active {
+      display: flex;
+    }
+    .navbar__mobile a {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--deep-teal);
+    }
+    .navbar__close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--deep-teal);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 80px 0 60px;
+      background: var(--warm-white);
+    }
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero__tagline {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: var(--deep-teal);
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+    .hero h1 em {
+      color: var(--coral);
+      font-style: normal;
+    }
+    .hero__desc {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 28px;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+    .hero__ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    .btn--primary {
+      background: var(--deep-teal);
+      color: #fff;
+      border-color: var(--deep-teal);
+    }
+    .btn--primary:hover {
+      background: #0a5e61;
+      border-color: #0a5e61;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(var(--deep-teal-rgb), 0.3);
+    }
+    .btn--secondary {
+      background: transparent;
+      color: var(--deep-teal);
+      border-color: var(--deep-teal);
+    }
+    .btn--secondary:hover {
+      background: rgba(var(--deep-teal-rgb), 0.08);
+      transform: translateY(-2px);
+    }
+    .hero__badges {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+    .badge--rating {
+      background: var(--coral);
+      color: #fff;
+    }
+    .badge--emi {
+      background: rgba(var(--deep-teal-rgb), 0.1);
+      color: var(--deep-teal);
+      border: 1px solid var(--border);
+    }
+    .hero__image {
+      position: relative;
+    }
+    .hero__image img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    .hero__rating-overlay {
+      position: absolute;
+      bottom: 24px;
+      left: -20px;
+      background: var(--coral);
+      color: #fff;
+      padding: 14px 22px;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(var(--coral-rgb), 0.35);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .hero__rating-overlay span {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-top: 2px;
+    }
+
+    /* ===== TRUST BAR ===== */
+    .trust-bar {
+      background: var(--deep-teal);
+      padding: 28px 0;
+    }
+    .trust-bar .container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .trust-bar__item {
+      color: #fff;
+    }
+    .trust-bar__icon {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    .trust-bar__item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .trust-bar__item p {
+      font-size: 0.82rem;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    /* ===== FEATURES ===== */
+    .features {
+      padding: 100px 0;
+      background: var(--surface);
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    .features__subtitle {
+      text-align: center;
+      color: #888;
+      font-size: 1.05rem;
+      margin-bottom: 56px;
+      max-width: 550px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .features__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .feature-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--coral);
+      border-radius: 4px 0 0 4px;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .feature-card__icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(var(--coral-rgb), 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      font-size: 1.2rem;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+    .feature-card p {
+      color: #777;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials {
+      padding: 100px 0;
+      background: var(--warm-white);
+    }
+    .testimonials h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      color: #1a1a1a;
+      margin-bottom: 56px;
+    }
+    .testimonials__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 56px;
+    }
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+    }
+    .testimonial-card__quote {
+      font-size: 3rem;
+      color: var(--coral);
+      line-height: 1;
+      margin-bottom: 8px;
+      font-family: Georgia, serif;
+    }
+    .testimonial-card p {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-card__author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-card__avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--sage-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    .testimonial-card__name {
+      font-weight: 600;
+      color: #1a1a1a;
+      font-size: 0.92rem;
+    }
+    .testimonial-card__location {
+      font-size: 0.8rem;
+      color: #999;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 24px;
+      text-align: center;
+    }
+    .stat__value {
+      font-family: 'Sora', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--deep-teal);
+      margin-bottom: 4px;
+    }
+    .stat__label {
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      padding: 100px 0;
+      background: var(--deep-teal);
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: 2.4rem;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.1rem;
+      margin-bottom: 36px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-section .btn--white {
+      background: #fff;
+      color: var(--deep-teal);
+      border-color: #fff;
+    }
+    .cta-section .btn--white:hover {
+      background: var(--warm-white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .cta-section .btn--outline-white {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,0.5);
+    }
+    .cta-section .btn--outline-white:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 40px 0;
+      background: var(--surface);
+      border-top: 2px solid var(--deep-teal);
+    }
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer__logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--deep-teal);
+    }
+    .footer__logo span {
+      color: var(--coral);
+    }
+    .footer__copyright {
+      color: #888;
+      font-size: 0.88rem;
+    }
+    .footer__links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .footer__links a {
+      font-size: 0.88rem;
+      color: #777;
+      transition: color 0.3s;
+    }
+    .footer__links a:hover {
+      color: var(--deep-teal);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero h1 { font-size: 2.6rem; }
+      .hero .container { gap: 32px; }
+      .features__grid { gap: 24px; }
+      .testimonials__grid { gap: 20px; }
+    }
+
+    @media (max-width: 768px) {
+      .navbar__links { display: none; }
+      .navbar__hamburger { display: flex; }
+
+      .hero { padding: 48px 0; }
+      .hero .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero h1 { font-size: 2.2rem; }
+      .hero__desc { max-width: 100%; }
+      .hero__image img { height: 360px; }
+      .hero__rating-overlay { left: 16px; bottom: 16px; }
+
+      .trust-bar .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .features { padding: 72px 0; }
+      .features h2 { font-size: 1.8rem; }
+      .features__grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .testimonials { padding: 72px 0; }
+      .testimonials h2 { font-size: 1.8rem; }
+      .testimonials__grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto 40px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 28px 24px;
+      }
+
+      .cta-section { padding: 72px 0; }
+      .cta-section h2 { font-size: 1.8rem; }
+
+      .footer .container {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.85rem; }
+      .hero__ctas { flex-direction: column; }
+      .hero__ctas .btn { width: 100%; justify-content: center; }
+      .hero__badges { flex-direction: column; gap: 10px; }
+      .cta-section .hero__ctas { flex-direction: column; align-items: center; }
+    }
+
+    /* === ANIMATION 1: Hero Cinematic Sequence === */
+    .hero__tagline .char,
+    .hero__h1 .word,
+    .hero h1 .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .hero__tagline .char.visible,
+    .hero__h1 .word.visible,
+    .hero h1 .word.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .hero__desc, .hero .hero__desc, .hero p {
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.6s ease 0.8s, transform 0.6s ease 0.8s;
+    }
+    .hero__desc.visible, .hero .hero__desc.visible, .hero p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero__ctas, .hero .hero__ctas {
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.5s ease 1s, transform 0.5s ease 1s;
+    }
+    .hero__ctas.visible, .hero .hero__ctas.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .hero__badges, .hero .hero__badges {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.5s ease 1.2s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s;
+    }
+    .hero__badges.visible, .hero .hero__badges.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .hero__image img, .hero img {
+      animation: kenBurns 20s ease-in-out infinite alternate;
+    }
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+
+    /* === ANIMATION 4: Staggered Card Cascade === */
+    .feature-card, .testimonial-card {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .feature-card.visible, .testimonial-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === ANIMATION 6: Directional Reveals === */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    /* === ANIMATION 7: Trust Bar Ticker === */
+    .trust-bar { overflow: hidden; position: relative; }
+    .trust-bar__track {
+      display: flex;
+      gap: 60px;
+      animation: ticker 20s linear infinite;
+      width: max-content;
+    }
+    .trust-bar__track:hover { animation-play-state: paused; }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* === ANIMATION 8: Image Clip-Path Reveal === */
+    .clip-reveal {
+      clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+      transition: clip-path 1s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .clip-reveal.visible {
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    /* === ANIMATION 10: Floating WhatsApp === */
+    .whatsapp-float {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: whatsappEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2s forwards, floatBounce 3s ease-in-out infinite 2.6s, pulseGlow 2s ease-in-out infinite 5.6s;
+    }
+    @keyframes whatsappEnter { to { opacity: 1; transform: translateY(0); } }
+    @keyframes floatBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+      50% { box-shadow: 0 4px 24px rgba(13,115,119,0.5); }
+    }
+
+    /* === ANIMATION 9: Navbar Scroll Enhancement === */
+    .navbar { transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; }
+    .navbar.scrolled {
+      background: rgba(255,255,255,0.97) !important;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+
+    /* === Magnetic Cursor === */
+    .magnetic-btn { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+    /* === Reduced Motion === */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .hero__image img, .hero img { animation: none; }
+      .trust-bar__track { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="navbar__logo">Nagadurga <span>Interiors</span></a>
+      <ul class="navbar__links">
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#price-tool">Price Tool</a></li>
+        <li><a href="#hyderabad">Hyderabad</a></li>
+      </ul>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="navbar__mobile" id="mobileNav">
+    <button class="navbar__close" id="closeNav" aria-label="Close menu">&times;</button>
+    <a href="#portfolio" onclick="closeMobile()">Portfolio</a>
+    <a href="#price-tool" onclick="closeMobile()">Price Tool</a>
+    <a href="#hyderabad" onclick="closeMobile()">Hyderabad</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__content">
+        <p class="hero__tagline">Est. 2024 / Hyderabad</p>
+        <h1>Where Nature Meets <em>Nurture.</em></h1>
+        <p class="hero__desc">Full-home interior solutions designed for modern Hyderabad living. Transparent pricing, 45-day delivery, and Vastu-first planning.</p>
+        <div class="hero__ctas">
+          <a href="#cta" class="btn btn--primary">Get Free Estimate</a>
+          <a href="#cta" class="btn btn--secondary">Claim Free 3D Design</a>
+        </div>
+        <div class="hero__badges">
+          <span class="badge badge--rating">⭐ Verified 4.8/5 by 2k+ Homeowners</span>
+          <span class="badge badge--emi">💳 0% EMI available for up to 24 months.</span>
+        </div>
+      </div>
+      <div class="hero__image clip-reveal">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80" alt="Modern Hyderabad living room designed by Nagadurga Interiors">
+        <div class="hero__rating-overlay">
+          ⭐ 4.8/5
+          <span>Rated by 2,000+ Homeowners</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust-bar reveal">
+    <div class="container">
+      <div class="trust-bar__track">
+        <div class="trust-bar__item">
+          <div class="trust-bar__icon">🚀</div>
+          <h4>45-Day Delivery</h4>
+          <p>On-time, every time</p>
+        </div>
+        <div class="trust-bar__item">
+          <div class="trust-bar__icon">🛡️</div>
+          <h4>10-Year Warranty</h4>
+          <p>Quality that lasts</p>
+        </div>
+        <div class="trust-bar__item">
+          <div class="trust-bar__icon">💎</div>
+          <h4>No Hidden Costs</h4>
+          <p>100% transparent pricing</p>
+        </div>
+        <div class="trust-bar__item">
+          <div class="trust-bar__icon">🕉️</div>
+          <h4>Vastu Certified</h4>
+          <p>Balanced energy flow</p>
+        </div>
+        <div class="trust-bar__item">
+          <div class="trust-bar__icon">🚀</div>
+          <h4>45-Day Delivery</h4>
+          <p>On-time, every time</p>
+        </div>
+        <div class="trust-bar__item">
+          <div class="trust-bar__icon">🛡️</div>
+          <h4>10-Year Warranty</h4>
+          <p>Quality that lasts</p>
+        </div>
+        <div class="trust-bar__item">
+          <div class="trust-bar__icon">💎</div>
+          <h4>No Hidden Costs</h4>
+          <p>100% transparent pricing</p>
+        </div>
+        <div class="trust-bar__item">
+          <div class="trust-bar__icon">🕉️</div>
+          <h4>Vastu Certified</h4>
+          <p>Balanced energy flow</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="portfolio">
+    <div class="container">
+      <h2 class="reveal">Why Nagadurga</h2>
+      <p class="features__subtitle reveal">We blend ancient wisdom with modern technology to create homes that feel as good as they look.</p>
+      <div class="features__grid">
+        <div class="feature-card reveal reveal-left">
+          <div class="feature-card__icon">🕉️</div>
+          <h3>Vastu Science</h3>
+          <p>Every layout is optimized for positive energy flow, balancing the five elements for a harmonious Hyderabad home.</p>
+        </div>
+        <div class="feature-card reveal reveal-right">
+          <div class="feature-card__icon">🖥️</div>
+          <h3>Tech-First Design</h3>
+          <p>Visualize your home in high-fidelity 3D before a single brick is moved. Precise and predictable.</p>
+        </div>
+        <div class="feature-card reveal reveal-scale">
+          <div class="feature-card__icon">🏭</div>
+          <h3>Direct Sourcing</h3>
+          <p>We work directly with manufacturers to ensure the best materials at prices that respect your budget.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="hyderabad">
+    <div class="container">
+      <h2 class="reveal">The Feeling of True Harmony</h2>
+      <div class="testimonials__grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__quote">"</div>
+          <p>The way Nagadurga integrated Vastu into our modern layout was magical. The energy of the house shifted immediately, and the design is timeless.</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">RR</div>
+            <div>
+              <div class="testimonial-card__name">Rajesh Reddy</div>
+              <div class="testimonial-card__location">3BHK, Jubilee Hills</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__quote">"</div>
+          <p>True 'Quiet Luxury'. Every detail, from the warm tones to the brass accents, reflects a level of sophistication we hadn't found elsewhere in Hyderabad.</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">PS</div>
+            <div>
+              <div class="testimonial-card__name">Priya Sharma</div>
+              <div class="testimonial-card__location">Villa, Gachibowli</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-card__quote">"</div>
+          <p>Their approach to 'Energy Engineering' is a game changer. It's not just about looks; it's about how you feel in the space. Delivered in just 38 days!</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">AR</div>
+            <div>
+              <div class="testimonial-card__name">Aniruddh Rao</div>
+              <div class="testimonial-card__location">2BHK, Kondapur</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stats reveal">
+        <div>
+          <div class="stat__value">250+</div>
+          <div class="stat__label">Projects Delivered</div>
+        </div>
+        <div>
+          <div class="stat__value">1.2M</div>
+          <div class="stat__label">Sq Ft Transformed</div>
+        </div>
+        <div>
+          <div class="stat__value">99%</div>
+          <div class="stat__label">Client Happiness</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section reveal" id="cta">
+    <div class="container">
+      <h2>Ready for your Hyderabad home?</h2>
+      <p>Start with our interactive price tool or chat with us directly.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="#price-tool" class="btn btn--white">Get Estimate</a>
+        <a href="https://wa.me/910000000000?text=Hi%2C%20I%27m%20interested%20in%20a%20quote%20for%20my%20home%20interior%20in%20Hyderabad." class="btn btn--outline-white whatsapp-float" target="_blank" rel="noopener">WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <a href="#" class="footer__logo">Nagadurga <span>Interiors</span></a>
+      <p class="footer__copyright">© 2024 Nagadurga Interiors, Hyderabad. All Rights Reserved.</p>
+      <ul class="footer__links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Nav Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const closeNav = document.getElementById('closeNav');
+
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.add('active');
+    });
+
+    closeNav.addEventListener('click', closeMobile);
+
+    function closeMobile() {
+      mobileNav.classList.remove('active');
+    }
+
+    // Scroll Reveal with Intersection Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // === ANIMATION 1: Hero Cinematic Sequence ===
+    function initHeroSequence() {
+      const tagline = document.querySelector('.hero__tagline');
+      const h1 = document.querySelector('.hero__h1') || document.querySelector('.hero h1');
+      
+      if (tagline) {
+        const text = tagline.textContent;
+        tagline.innerHTML = text.split('').map((c, i) => 
+          c === ' ' ? ' ' : `<span class="char" style="transition-delay:${i * 0.04}s">${c}</span>`
+        ).join('');
+      }
+      
+      if (h1) {
+        const text = h1.textContent;
+        h1.innerHTML = text.split(' ').map((word, i) => 
+          `<span class="word" style="transition-delay:${0.2 + i * 0.1}s">${word}</span>`
+        ).join(' ');
+      }
+      
+      setTimeout(() => {
+        document.querySelectorAll('.hero__tagline .char, .hero__h1 .word, .hero h1 .word, .hero__desc, .hero .hero__desc, .hero p, .hero__ctas, .hero .hero__ctas, .hero__badges, .hero .hero__badges').forEach(el => {
+          el.classList.add('visible');
+        });
+      }, 300);
+    }
+
+    // === ANIMATION 2: Parallax Image Depth ===
+    function initParallax() {
+      const heroImg = document.querySelector('.hero__image img') || document.querySelector('.hero img');
+      if (!heroImg) return;
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        heroImg.style.transform = `translateY(${scrollY * 0.3}px) scale(1.05)`;
+      }, { passive: true });
+    }
+
+    // === ANIMATION 3: Magnetic Cursor on CTAs ===
+    function initMagneticCursor() {
+      document.querySelectorAll('.btn, .magnetic-btn').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = 'translate(0, 0)';
+        });
+      });
+    }
+
+    // === ANIMATION 4: Staggered Card Cascade ===
+    function initCardCascade() {
+      const cards = document.querySelectorAll('.feature-card, .testimonial-card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cardIndex = Array.from(cards).indexOf(entry.target);
+            const staggerDelay = (cardIndex % 3) * 100;
+            setTimeout(() => entry.target.classList.add('visible'), staggerDelay);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      cards.forEach(card => observer.observe(card));
+    }
+
+    // === ANIMATION 5: Counter Animation ===
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat__value');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const text = el.textContent;
+            const match = text.match(/([\d.]+)/);
+            if (!match) return;
+            const target = parseFloat(match[1]);
+            const prefix = text.slice(0, text.indexOf(match[1]));
+            const suffix = text.slice(text.indexOf(match[1]) + match[1].length);
+            const isDecimal = match[1].includes('.');
+            const duration = 2000;
+            const start = performance.now();
+            function update(now) {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = isDecimal ? (target * eased).toFixed(1) : Math.floor(target * eased);
+              el.textContent = prefix + current + suffix;
+              if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      counters.forEach(c => observer.observe(c));
+    }
+
+    // === ANIMATION 6: Directional Reveals ===
+    function initDirectionalReveals() {
+      const reveals = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-scale');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      reveals.forEach(el => observer.observe(el));
+    }
+
+    // === ANIMATION 8: Clip-Path Image Reveal ===
+    function initClipReveal() {
+      const images = document.querySelectorAll('.clip-reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      images.forEach(img => observer.observe(img));
+    }
+
+    // === ANIMATION 9: Navbar Scroll Enhancement ===
+    function initNavbarBlur() {
+      const navbar = document.querySelector('.navbar');
+      if (!navbar) return;
+      window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+      }, { passive: true });
+    }
+
+    // === INITIALIZE ALL ===
+    document.addEventListener('DOMContentLoaded', () => {
+      initHeroSequence();
+      initParallax();
+      initMagneticCursor();
+      initCardCascade();
+      animateCounters();
+      initDirectionalReveals();
+      initClipReveal();
+      initNavbarBlur();
+    });
+  </script>
+</body>
+</html>

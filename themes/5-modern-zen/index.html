@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nagadurga Interiors | Best Interior Designer in Hyderabad</title>
+    <meta name="description" content="Nagadurga Interiors - Hyderabad's trusted interior design company. Vastu-first planning, 45-day delivery, 0% EMI available. Transform your home with our modern zen designs.">
+    <meta name="keywords" content="interior designer Hyderabad, home interiors, Vastu compliant interiors, modern interior design, Nagadurga Interiors">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏡</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-sage: #4a6741;
+            --lavender: #b8a9c9;
+            --moss-green: #7c9473;
+            --warm-off-white: #faf8f5;
+            --forest-charcoal: #2c3e2d;
+            --surface: #ffffff;
+            --border: #d8d3cc;
+            --font-heading: 'DM Sans', 'Cabinet Grotesk', sans-serif;
+            --font-body: 'Inter', 'General Sans', sans-serif;
+            --font-mono: 'IBM Plex Mono', 'Berkeley Mono', monospace;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--warm-off-white);
+            color: var(--forest-charcoal);
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250, 248, 245, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--forest-charcoal);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--forest-charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--deep-sage);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--forest-charcoal);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--moss-green);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            color: var(--forest-charcoal);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #5a5a5a;
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--deep-sage);
+            color: var(--warm-off-white);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #3d5736;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--deep-sage);
+            border: 2px solid var(--deep-sage);
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--deep-sage);
+            color: var(--warm-off-white);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--moss-green);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .emi-badge {
+            font-size: 0.9rem;
+            color: var(--deep-sage);
+            margin-top: 16px;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .hero-image .rating-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: var(--moss-green);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--deep-sage);
+            color: var(--warm-off-white);
+            padding: 24px 0;
+        }
+
+        .trust-bar .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .trust-icon {
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 48px;
+            color: var(--forest-charcoal);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            padding: 32px;
+            background: var(--surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--lavender);
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--forest-charcoal);
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: var(--surface);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .testimonial-card {
+            padding: 32px;
+            background: var(--warm-off-white);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 16px;
+            left: 24px;
+            font-size: 4rem;
+            font-family: Georgia, serif;
+            color: var(--lavender);
+            line-height: 1;
+            opacity: 0.6;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            padding-top: 32px;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--forest-charcoal);
+            font-size: 0.95rem;
+        }
+
+        .testimonial-location {
+            color: var(--moss-green);
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--deep-sage);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--forest-charcoal);
+            color: var(--warm-off-white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: var(--deep-sage);
+            color: var(--warm-off-white);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .cta-primary:hover {
+            background: #3d5736;
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--warm-off-white);
+            border: 2px solid var(--warm-off-white);
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: var(--warm-off-white);
+            color: var(--forest-charcoal);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 0;
+            border-top: 2px solid var(--deep-sage);
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--forest-charcoal);
+        }
+
+        .footer-copy {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--deep-sage);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 2.75rem;
+            }
+
+            .hero-image img {
+                height: 360px;
+            }
+
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-row {
+                gap: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--warm-off-white);
+                flex-direction: column;
+                padding: 24px;
+                gap: 16px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .stats-row {
+                flex-direction: column;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .trust-bar .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        /* === ANIMATION 1: Hero Cinematic Sequence === */
+        .hero-tagline .char { display: inline-block; opacity: 0; transform: translateY(20px); }
+        .hero-tagline .char.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .hero h1 .word { display: inline-block; opacity: 0; transform: translateY(20px); }
+        .hero h1 .word.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .hero-desc { opacity: 0; transform: translateY(15px); transition: opacity 0.6s ease 0.8s, transform 0.6s ease 0.8s; }
+        .hero-desc.visible { opacity: 1; transform: translateY(0); }
+        .hero-ctas { opacity: 0; transform: translateX(-20px); transition: opacity 0.5s ease 1s, transform 0.5s ease 1s; }
+        .hero-ctas.visible { opacity: 1; transform: translateX(0); }
+        .hero-badge, .emi-badge { opacity: 0; transform: scale(0.8); transition: opacity 0.5s ease 1.2s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s; }
+        .hero-badge.visible, .emi-badge.visible { opacity: 1; transform: scale(1); }
+        .hero-image img { animation: kenBurns 20s ease-in-out infinite alternate; }
+        @keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.08); } }
+
+        /* === ANIMATION 4: Staggered Card Cascade === */
+        .feature-card, .testimonial-card { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .feature-card.visible, .testimonial-card.visible { opacity: 1; transform: translateY(0); }
+
+        /* === ANIMATION 6: Directional Reveals === */
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .reveal-scale { opacity: 0; transform: scale(0.9); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+        /* === ANIMATION 7: Trust Bar Ticker === */
+        .trust-bar { overflow: hidden; position: relative; }
+        .trust-bar__track { display: flex; gap: 60px; animation: ticker 20s linear infinite; width: max-content; }
+        .trust-bar__track:hover { animation-play-state: paused; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* === ANIMATION 8: Image Clip-Path Reveal === */
+        .clip-reveal { clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%); transition: clip-path 1s cubic-bezier(0.65, 0, 0.35, 1); }
+        .clip-reveal.visible { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+
+        /* === ANIMATION 10: Floating WhatsApp === */
+        .whatsapp-float { opacity: 0; transform: translateY(40px); animation: whatsappEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2s forwards, floatBounce 3s ease-in-out infinite 2.6s; }
+        @keyframes whatsappEnter { to { opacity: 1; transform: translateY(0); } }
+        @keyframes floatBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        /* === ANIMATION 9: Navbar Scroll Enhancement === */
+        .navbar { transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; }
+        .navbar.scrolled { background: rgba(250,248,245,0.97) !important; backdrop-filter: blur(20px); box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+
+        .magnetic-btn { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .hero-image img { animation: none; }
+            .trust-bar__track { animation: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Nagadurga Interiors</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#price-tool">Price Tool</a></li>
+                <li><a href="#hyderabad">Hyderabad</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content reveal">
+                <p class="hero-tagline">Est. 2024 / Hyderabad</p>
+                <h1>Spaces That Breathe.</h1>
+                <p class="hero-desc">Full-home interior solutions designed for modern Hyderabad living. Transparent pricing, 45-day delivery, and Vastu-first planning.</p>
+                <div class="hero-ctas">
+                    <a href="#estimate" class="btn-primary">Get Free Estimate</a>
+                    <a href="#3d-design" class="btn-secondary">Claim Free 3D Design</a>
+                </div>
+                <div class="hero-badge">✓ Verified 4.8/5 by 2k+ Homeowners</div>
+                <p class="emi-badge">💳 0% EMI available for up to 24 months.</p>
+            </div>
+            <div class="hero-image reveal clip-reveal">
+                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80" alt="Modern living room interior design by Nagadurga Interiors">
+                <div class="rating-badge">⭐ 4.8/5 Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="trust-bar__track">
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                45-Day Delivery
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                10-Year Warranty
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                No Hidden Costs
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                Vastu Certified
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                45-Day Delivery
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                10-Year Warranty
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                No Hidden Costs
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">✓</span>
+                Vastu Certified
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="portfolio">
+        <div class="container">
+            <h2 class="section-title reveal">Why Nagadurga</h2>
+            <div class="features-grid">
+                <div class="feature-card reveal reveal-left">
+                    <h3>Vastu Science</h3>
+                    <p>Every layout is optimized for positive energy flow, balancing the five elements for a harmonious Hyderabad home.</p>
+                </div>
+                <div class="feature-card reveal reveal-scale">
+                    <h3>Tech-First Design</h3>
+                    <p>Visualize your home in high-fidelity 3D before a single brick is moved. Precise and predictable.</p>
+                </div>
+                <div class="feature-card reveal reveal-right">
+                    <h3>Direct Sourcing</h3>
+                    <p>We work directly with manufacturers to ensure the best materials at prices that respect your budget.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title reveal">The Feeling of True Harmony</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">The way Nagadurga integrated Vastu into our modern layout was magical. The energy of the house shifted immediately, and the design is timeless.</p>
+                    <p class="testimonial-author">Rajesh Reddy</p>
+                    <p class="testimonial-location">3BHK, Jubilee Hills</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">True 'Quiet Luxury'. Every detail, from the warm tones to the brass accents, reflects a level of sophistication we hadn't found elsewhere in Hyderabad.</p>
+                    <p class="testimonial-author">Priya Sharma</p>
+                    <p class="testimonial-location">Villa, Gachibowli</p>
+                </div>
+                <div class="testimonial-card reveal">
+                    <p class="testimonial-text">Their approach to 'Energy Engineering' is a game changer. It's not just about looks; it's about how you feel in the space. Delivered in just 38 days!</p>
+                    <p class="testimonial-author">Aniruddh Rao</p>
+                    <p class="testimonial-location">2BHK, Kondapur</p>
+                </div>
+            </div>
+            <div class="stats-row reveal">
+                <div class="stat-item">
+                    <div class="stat-value">250+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">1.2M</div>
+                    <div class="stat-label">Sq Ft Transformed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">99%</div>
+                    <div class="stat-label">Client Happiness</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container reveal">
+            <h2>Ready for your Hyderabad home?</h2>
+            <p>Start with our interactive price tool or chat with us directly.</p>
+            <div class="cta-buttons">
+                    <a href="#estimate" class="cta-primary magnetic-btn">Get Estimate</a>
+                    <a href="https://wa.me/910000000000?text=Hi%2C%20I'm%20interested%20in%20a%20quote%20for%20my%20home%20interior%20in%20Hyderabad." class="cta-secondary magnetic-btn" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">Nagadurga Interiors</div>
+            <p class="footer-copy">© 2024 Nagadurga Interiors, Hyderabad. All Rights Reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#privacy">Privacy</a></li>
+                <li><a href="#terms">Terms</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Widget -->
+    <a href="https://wa.me/910000000000?text=Hi%2C%20I'm%20interested%20in%20interiors." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        💬
+    </a>
+
+    <script>
+        // Mobile Nav Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Scroll Reveal with Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // === ANIMATION 1: Hero Cinematic Sequence ===
+        function initHeroSequence() {
+            const tagline = document.querySelector('.hero-tagline');
+            const h1 = document.querySelector('.hero h1');
+            if (tagline) {
+                const t = tagline.textContent;
+                tagline.innerHTML = t.split('').map((c, i) => c === ' ' ? ' ' : `<span class="char" style="transition-delay:${i * 0.04}s">${c}</span>`).join('');
+            }
+            if (h1) {
+                const t = h1.textContent;
+                h1.innerHTML = t.split(' ').map((w, i) => `<span class="word" style="transition-delay:${0.2 + i * 0.1}s">${w}</span>`).join(' ');
+            }
+            setTimeout(() => {
+                document.querySelectorAll('.hero-tagline .char, .hero h1 .word, .hero-desc, .hero-ctas, .hero-badge, .emi-badge').forEach(el => el.classList.add('visible'));
+            }, 300);
+        }
+
+        // === ANIMATION 2: Parallax Scroll ===
+        function initParallax() {
+            const img = document.querySelector('.hero-image img');
+            if (!img) return;
+            window.addEventListener('scroll', () => {
+                img.style.transform = `translateY(${window.scrollY * 0.3}px) scale(1.05)`;
+            }, { passive: true });
+        }
+
+        // === ANIMATION 3: Magnetic Cursor ===
+        function initMagneticCursor() {
+            document.querySelectorAll('.btn-primary, .btn-secondary, .cta-primary, .cta-secondary, .magnetic-btn').forEach(btn => {
+                btn.addEventListener('mousemove', e => {
+                    const r = btn.getBoundingClientRect();
+                    btn.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.15}px, ${(e.clientY - r.top - r.height / 2) * 0.15}px)`;
+                });
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0,0)';
+                });
+            });
+        }
+
+        // === ANIMATION 4: Staggered Card Cascade ===
+        function initCardCascade() {
+            const cards = document.querySelectorAll('.feature-card, .testimonial-card');
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        const i = Array.from(cards).indexOf(e.target);
+                        setTimeout(() => e.target.classList.add('visible'), (i % 3) * 100);
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            cards.forEach(c => obs.observe(c));
+        }
+
+        // === ANIMATION 5: Counter Animation ===
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-value');
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        const el = e.target, t = el.textContent, m = t.match(/([\d.]+)/);
+                        if (!m) return;
+                        const target = parseFloat(m[1]), pre = t.slice(0, t.indexOf(m[1])), suf = t.slice(t.indexOf(m[1]) + m[1].length), dec = m[1].includes('.');
+                        let start = performance.now();
+                        function upd(now) {
+                            const p = Math.min((now - start) / 2000, 1), eased = 1 - Math.pow(1 - p, 3), cur = dec ? (target * eased).toFixed(1) : Math.floor(target * eased);
+                            el.textContent = pre + cur + suf;
+                            if (p < 1) requestAnimationFrame(upd);
+                        }
+                        requestAnimationFrame(upd);
+                        obs.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(c => obs.observe(c));
+        }
+
+        // === ANIMATION 6: Directional Reveals ===
+        function initDirectionalReveals() {
+            const reveals = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-scale');
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+            reveals.forEach(el => obs.observe(el));
+        }
+
+        // === ANIMATION 8: Clip Reveal ===
+        function initClipReveal() {
+            const imgs = document.querySelectorAll('.clip-reveal');
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            imgs.forEach(i => obs.observe(i));
+        }
+
+        // === ANIMATION 9: Navbar Scroll Enhancement ===
+        function initNavbarBlur() {
+            const nb = document.querySelector('.navbar');
+            if (!nb) return;
+            window.addEventListener('scroll', () => {
+                nb.classList.toggle('scrolled', window.scrollY > 50);
+            }, { passive: true });
+        }
+
+        // Initialize all animations
+        document.addEventListener('DOMContentLoaded', () => {
+            initHeroSequence();
+            initParallax();
+            initMagneticCursor();
+            initCardCascade();
+            animateCounters();
+            initDirectionalReveals();
+            initClipReveal();
+            initNavbarBlur();
+        });
+    </script>
+
+</body>
+</html>

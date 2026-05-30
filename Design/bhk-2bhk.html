@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2BHK Interior Design in Mumbai | Specialist Solutions</title>
+    <style>
+        :root {
+            --bg:      oklch(98% 0.004 95);
+            --surface: oklch(100% 0.002 95);
+            --fg:      oklch(20% 0.018 70);
+            --muted:   oklch(48% 0.012 70);
+            --border:  oklch(90% 0.006 95);
+            --accent:  oklch(52% 0.10 28);
+
+            --font-display: 'Iowan Old Style', 'Charter', Georgia, serif;
+            --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-mono:    ui-monospace, 'IBM Plex Mono', Menlo, monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--fg); font-family: var(--font-body); line-height: 1.5; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        header { padding: 4rem 0; border-bottom: 2px solid var(--fg); }
+        h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 400; }
+        .mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; color: var(--muted); }
+
+        .intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin: 4rem 0; align-items: start; }
+        .intro p { font-size: 1.25rem; }
+
+        .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; margin-bottom: 8rem; }
+        .project-card { border: 1px solid var(--border); background: var(--surface); overflow: hidden; }
+        .project-image { width: 100%; height: 400px; background: #eee; }
+        .project-image img { width: 100%; height: 100%; object-fit: cover; }
+        .project-details { padding: 2rem; }
+        
+        .metadata {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+        }
+        .metadata-item span { display: block; color: var(--muted); margin-bottom: 0.25rem; }
+
+        .mumbai-trust {
+            background: var(--fg);
+            color: var(--bg);
+            padding: 6rem 0;
+            text-align: center;
+        }
+        .mumbai-trust h2 { font-family: var(--font-display); font-size: 3rem; margin-bottom: 2rem; }
+        
+        .cta-box {
+            border: 1px solid var(--fg);
+            padding: 4rem;
+            text-align: center;
+            margin: 8rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .intro, .project-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="mono">Mumbai / 2BHK Specialist</div>
+            <h1>Optimized Living for the Mumbai Home.</h1>
+        </header>
+
+        <section class="intro">
+            <p>Space is luxury in Mumbai. We specialize in transforming 2BHK apartments in Bandra, Powai, and South Mumbai into expansive, light-filled sanctuaries using smart multi-functional design.</p>
+            <div class="mono" style="color: var(--fg);">
+                [420+ Projects Completed in Mumbai]<br>
+                [Average Timeline: 45 Days]<br>
+                [Starting from ₹6.5 Lakhs]
+            </div>
+        </section>
+
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt="Bandra Apartment">
+                </div>
+                <div class="project-details">
+                    <h3 style="font-family: var(--font-display); font-size: 1.5rem;">The Bandra Minimalist</h3>
+                    <p style="color: var(--muted); margin-top: 0.5rem;">A study in white and oak, maximizing natural light in a compact 750 sq.ft. space.</p>
+                    <div class="metadata">
+                        <div class="metadata-item"><span>CITY</span>MUMBAI</div>
+                        <div class="metadata-item"><span>BUDGET</span>₹8.2 LAKH</div>
+                        <div class="metadata-item"><span>TIMELINE</span>40 DAYS</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80" alt="Powai Home">
+                </div>
+                <div class="project-details">
+                    <h3 style="font-family: var(--font-display); font-size: 1.5rem;">Powai Lakeside Residence</h3>
+                    <p style="color: var(--muted); margin-top: 0.5rem;">Integrating industrial textures with warm lighting for a young professional couple.</p>
+                    <div class="metadata">
+                        <div class="metadata-item"><span>CITY</span>MUMBAI</div>
+                        <div class="metadata-item"><span>BUDGET</span>₹7.5 LAKH</div>
+                        <div class="metadata-item"><span>TIMELINE</span>45 DAYS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="mumbai-trust">
+        <div class="container">
+            <div class="mono" style="margin-bottom: 1rem; opacity: 0.7;">Experience Center</div>
+            <h2>Visit Us in Lower Parel.</h2>
+            <p style="max-width: 600px; margin: 0 auto 3rem; opacity: 0.8;">Touch our materials, test our hardware, and meet our lead designers at our Mumbai Experience Center.</p>
+            <a href="#" class="btn" style="background: var(--bg); color: var(--fg); padding: 1rem 2rem; text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem;">Book a Showroom Visit</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="cta-box">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Ready for your Mumbai home?</h2>
+            <p style="margin-bottom: 2.5rem; color: var(--muted);">Start with our interactive price tool or chat with us directly.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="calculator.html" style="background: var(--fg); color: var(--bg); padding: 1rem 2rem; text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem;">Get Estimate</a>
+                <a href="https://wa.me/910000000000" style="border: 1px solid var(--fg); color: var(--fg); padding: 1rem 2rem; text-decoration: none; font-family: var(--font-mono); font-size: 0.8rem;">WhatsApp Us</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

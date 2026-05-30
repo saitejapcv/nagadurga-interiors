@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Portfolio | Kala & Co. Interior Design</title>
+    <style>
+        :root {
+            --bg:      oklch(98% 0.004 95);
+            --surface: oklch(100% 0.002 95);
+            --fg:      oklch(20% 0.018 70);
+            --muted:   oklch(48% 0.012 70);
+            --border:  oklch(90% 0.006 95);
+            --accent:  oklch(52% 0.10 28);
+
+            --font-display: 'Iowan Old Style', 'Charter', Georgia, serif;
+            --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-mono:    ui-monospace, 'IBM Plex Mono', Menlo, monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--fg); font-family: var(--font-body); line-height: 1.5; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        
+        nav {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; text-decoration: none; color: inherit; }
+
+        header { padding: 6rem 0; text-align: center; }
+        h1 { font-family: var(--font-display); font-size: 4rem; font-weight: 400; margin-bottom: 1.5rem; }
+        .mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; color: var(--muted); }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        .filter-item { cursor: pointer; padding-bottom: 0.25rem; border-bottom: 1px solid transparent; }
+        .filter-item.active { border-color: var(--fg); color: var(--fg); }
+
+        .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; }
+        .portfolio-item { display: flex; flex-direction: column; }
+        .portfolio-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: #eee;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .portfolio-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .portfolio-item:hover img { transform: scale(1.05); }
+
+        .item-info h3 { font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; }
+        .item-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--muted);
+        }
+        .item-meta b { color: var(--fg); display: block; margin-top: 0.25rem; font-weight: normal; font-size: 0.75rem; }
+
+        footer { padding: 8rem 0 4rem; text-align: center; border-top: 1px solid var(--border); margin-top: 8rem; }
+
+        @media (max-width: 768px) {
+            .portfolio-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="logo">Kala & Co.</a>
+            <div style="font-family: var(--font-mono); font-size: 0.7rem;">PORTFOLIO / ARCHIVE</div>
+        </nav>
+
+        <header>
+            <div class="mono">Selected Works</div>
+            <h1>Homes with Soul.</h1>
+            <p style="max-width: 500px; margin: 0 auto; color: var(--muted);">Explore our archive of residential transformations across India, where every space is a dialogue between tradition and modernity.</p>
+        </header>
+
+        <div class="filter-bar">
+            <span class="filter-item active">All Projects</span>
+            <span class="filter-item">Mumbai</span>
+            <span class="filter-item">Bangalore</span>
+            <span class="filter-item">Pune</span>
+            <span class="filter-item">2BHK</span>
+            <span class="filter-item">Luxury</span>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Project 1 -->
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Bandra Minimalist">
+                </div>
+                <div class="item-info">
+                    <h3>The Bandra Minimalist</h3>
+                    <div class="item-meta">
+                        <div>LOCATION <b>MUMBAI</b></div>
+                        <div>BUDGET <b>₹8.2 LAKH</b></div>
+                        <div>TIMELINE <b>40 DAYS</b></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="Powai Home">
+                </div>
+                <div class="item-info">
+                    <h3>Powai Lakeside</h3>
+                    <div class="item-meta">
+                        <div>LOCATION <b>MUMBAI</b></div>
+                        <div>BUDGET <b>₹7.5 LAKH</b></div>
+                        <div>TIMELINE <b>45 DAYS</b></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Bangalore Loft">
+                </div>
+                <div class="item-info">
+                    <h3>Whitefield Loft</h3>
+                    <div class="item-meta">
+                        <div>LOCATION <b>BANGALORE</b></div>
+                        <div>BUDGET <b>₹12 LAKH</b></div>
+                        <div>TIMELINE <b>55 DAYS</b></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="portfolio-item">
+                <div class="portfolio-image">
+                    <img src="https://images.unsplash.com/photo-1617806118233-18e1db207af1?auto=format&fit=crop&w=800&q=80" alt="Pune Traditional">
+                </div>
+                <div class="item-info">
+                    <h3>Pune Heritage 3BHK</h3>
+                    <div class="item-meta">
+                        <div>LOCATION <b>PUNE</b></div>
+                        <div>BUDGET <b>₹15.5 LAKH</b></div>
+                        <div>TIMELINE <b>60 DAYS</b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="mono" style="margin-bottom: 2rem;">Ready to build your story?</div>
+            <a href="calculator.html" style="background: var(--fg); color: var(--bg); padding: 1.5rem 3rem; text-decoration: none; font-family: var(--font-mono); font-size: 0.9rem; display: inline-block;">Start Your Estimate</a>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Homes, Simplified | Interior Design India</title>
+    <style>
+        :root {
+            --bg:      oklch(98% 0.004 95);
+            --surface: oklch(100% 0.002 95);
+            --fg:      oklch(20% 0.018 70);
+            --muted:   oklch(48% 0.012 70);
+            --border:  oklch(90% 0.006 95);
+            --accent:  oklch(52% 0.10 28);
+
+            --font-display: 'Iowan Old Style', 'Charter', Georgia, serif;
+            --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-mono:    ui-monospace, 'IBM Plex Mono', Menlo, monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-body);
+            line-height: 1.5;
+        }
+
+        /* Typography */
+        h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.1; }
+        .mono { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; }
+
+        /* Layout */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+
+        /* Navigation */
+        nav {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--fg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-family: var(--font-display); font-size: 1.5rem; text-decoration: none; color: inherit; }
+        .nav-links { display: flex; gap: 2rem; font-family: var(--font-mono); font-size: 0.8rem; }
+        .nav-links a { text-decoration: none; color: inherit; }
+
+        /* Hero */
+        .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: 80vh; }
+        .hero-content h1 { font-size: clamp(3rem, 8vw, 5rem); margin-bottom: 2rem; }
+        .hero-content p { font-size: 1.25rem; color: var(--muted); margin-bottom: 3rem; max-width: 480px; }
+        
+        .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border: 1px solid var(--fg);
+            transition: 0.2s ease;
+        }
+        .btn-primary { background: var(--fg); color: var(--bg); }
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-secondary { background: transparent; color: var(--fg); }
+        .btn-secondary:hover { background: var(--fg); color: var(--bg); }
+
+        .hero-image {
+            width: 100%;
+            height: 600px;
+            background: oklch(90% 0.006 95);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-badge {
+            position: absolute;
+            bottom: 2rem;
+            left: -1rem;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            transform: rotate(-2deg);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+        }
+
+        /* Features */
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; margin-top: 4rem; }
+        .feature-item h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .feature-item p { color: var(--muted); font-size: 0.95rem; }
+
+        /* Before/After */
+        .ba-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            position: relative;
+            overflow: hidden;
+            margin: 4rem 0;
+            border: 1px solid var(--border);
+        }
+        .ba-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .ba-after { z-index: 1; }
+        .ba-before {
+            z-index: 2;
+            width: 50%;
+            border-right: 2px solid white;
+            overflow: hidden;
+        }
+        .ba-before img, .ba-after img { width: 100vw; height: 100%; object-fit: cover; }
+        .ba-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            bottom: 0;
+            width: 2px;
+            background: white;
+            z-index: 3;
+            cursor: ew-resize;
+        }
+        .ba-label {
+            position: absolute;
+            bottom: 2rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            z-index: 4;
+        }
+
+        /* Vastu Section */
+        .vastu-section { background: var(--surface); }
+        .vastu-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
+        .vastu-list { list-style: none; }
+        .vastu-list li {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .vastu-list li::before { content: "✓"; color: var(--accent); font-weight: bold; }
+
+        /* Trust Markers */
+        .trust-bar {
+            background: var(--fg);
+            color: var(--bg);
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-around;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+        }
+
+        /* WhatsApp Widget */
+        .whatsapp-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 100;
+            background: #25D366;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        /* EMI Badge */
+        .emi-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem;
+            font-family: var(--font-mono);
+            margin-top: 1rem;
+        }
+        .emi-badge strong { color: var(--accent); }
+
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 0 auto 3rem; }
+            .cta-group { justify-content: center; }
+            .feature-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .vastu-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="logo">Kala & Co.</a>
+            <div class="nav-links">
+                <a href="portfolio.html">Portfolio</a>
+                <a href="calculator.html">Price Tool</a>
+                <a href="bhk-2bhk.html">Cities</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-content">
+                <div class="mono" style="margin-bottom: 1rem; color: var(--accent);">Est. 2024 / India</div>
+                <h1>Interiors that Tell Your Story.</h1>
+                <p>Full-home interior solutions designed for modern Indian living. Transparent pricing, 45-day delivery, and Vastu-first planning.</p>
+                <div class="cta-group">
+                    <a href="calculator.html" class="btn btn-primary">Get Free Estimate</a>
+                    <a href="#3d-offer" class="btn btn-secondary">Claim Free 3D Design</a>
+                </div>
+                <div class="emi-badge">
+                    <strong>0% EMI</strong> available for up to 24 months.
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80" alt="Modern Indian Living Room">
+                <div class="hero-badge">Verified 4.8/5 by 2k+ Homeowners</div>
+            </div>
+        </section>
+    </div>
+
+    <div class="trust-bar">
+        <span>45-DAY DELIVERY</span>
+        <span>10-YEAR WARRANTY</span>
+        <span>NO HIDDEN COSTS</span>
+        <span>VASTU CERTIFIED</span>
+    </div>
+
+    <div class="container">
+        <section id="ba-slider">
+            <div class="mono" style="text-align: center; margin-bottom: 1rem;">Results / Before & After</div>
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 4rem;">From Shell to Soul.</h2>
+            
+            <div class="ba-container" id="slider">
+                <div class="ba-image ba-after">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=80" alt="After">
+                </div>
+                <div class="ba-image ba-before" id="before-img">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1920&q=80" alt="Before">
+                </div>
+                <div class="ba-handle" id="handle"></div>
+                <div class="ba-label" style="left: 2rem;">Before</div>
+                <div class="ba-label" style="right: 2rem;">After</div>
+            </div>
+        </section>
+
+        <section class="feature-grid">
+            <div class="feature-item">
+                <h3>Vastu Science</h3>
+                <p>Every layout is optimized for positive energy flow, balancing the five elements for a harmonious home.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Tech-First Design</h3>
+                <p>Visualize your home in high-fidelity 3D before a single brick is moved. Precise and predictable.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Direct Sourcing</h3>
+                <p>We work directly with manufacturers to ensure the best materials at prices that respect your budget.</p>
+            </div>
+        </section>
+
+        <section class="vastu-section">
+            <div class="vastu-grid">
+                <div>
+                    <div class="mono" style="margin-bottom: 1rem;">Core Values</div>
+                    <h2>The Vastu Harmony Checklist</h2>
+                    <p style="margin-top: 1rem; color: var(--muted);">We ensure every home adheres to ancient wisdom paired with modern aesthetics.</p>
+                    <a href="#" class="btn btn-secondary" style="margin-top: 2rem;">Download Full Guide</a>
+                </div>
+                <ul class="vastu-list">
+                    <li><strong>Entryway:</strong> North, East, or North-East orientation for prosperity.</li>
+                    <li><strong>Kitchen:</strong> South-East placement to harness the fire element.</li>
+                    <li><strong>Master Bedroom:</strong> South-West positioning for stability and rest.</li>
+                    <li><strong>Colors:</strong> Palette selection based on room-specific cosmic energies.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="3d-offer" style="text-align: center; background: var(--fg); color: var(--bg); margin: 4rem 0;">
+            <div class="container">
+                <div class="mono" style="margin-bottom: 1rem; opacity: 0.7;">Limited Time Offer</div>
+                <h2 style="font-size: 3rem; margin-bottom: 2rem;">See Your Future Home in 3D.</h2>
+                <p style="max-width: 600px; margin: 0 auto 3rem; opacity: 0.8;">Book a free consultation this week and get a detailed 3D render of your living room — worth ₹15,000 — absolutely free.</p>
+                <a href="calculator.html" class="btn btn-primary" style="background: var(--bg); color: var(--fg);">Book Consultation</a>
+            </div>
+        </section>
+    </div>
+
+    <a href="https://wa.me/910000000000?text=Hi,%20I'm%20interested%20in%20a%20quote%20for%20my%20home%20interior." class="whatsapp-widget">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Chat on WhatsApp
+    </a>
+
+    <script>
+        const slider = document.getElementById('slider');
+        const handle = document.getElementById('handle');
+        const beforeImg = document.getElementById('before-img');
+
+        slider.addEventListener('mousemove', (e) => {
+            const rect = slider.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const percent = (x / rect.width) * 100;
+            
+            if (percent >= 0 && percent <= 100) {
+                handle.style.left = percent + '%';
+                beforeImg.style.width = percent + '%';
+            }
+        });
+
+        slider.addEventListener('touchmove', (e) => {
+            const rect = slider.getBoundingClientRect();
+            const x = e.touches[0].clientX - rect.left;
+            const percent = (x / rect.width) * 100;
+            
+            if (percent >= 0 && percent <= 100) {
+                handle.style.left = percent + '%';
+                beforeImg.style.width = percent + '%';
+            }
+        });
+    </script>
+
+</body>
+</html>

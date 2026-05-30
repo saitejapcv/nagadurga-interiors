@@ -1,0 +1,166 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]: "N"
+        - generic [ref=e8]: Nagadurga.
+      - generic [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: "#home"
+        - link "Vastu Process" [ref=e11] [cursor=pointer]:
+          - /url: "#vastu"
+        - link "Portfolio" [ref=e12] [cursor=pointer]:
+          - /url: "#portfolio"
+        - link "About" [ref=e13] [cursor=pointer]:
+          - /url: "#about"
+        - link "Contact" [ref=e14] [cursor=pointer]:
+          - /url: "#contact"
+        - link "Consult Now" [ref=e15] [cursor=pointer]:
+          - /url: "#contact"
+      - button [ref=e17]:
+        - img [ref=e18]
+  - main [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - text: Artistry in Living
+        - heading "Creating Soulful, Vastu-Aligned Sanctuaries" [level=1] [ref=e22]:
+          - text: Creating Soulful,
+          - text: Vastu-Aligned Sanctuaries
+        - paragraph [ref=e23]: Beyond aesthetics, we engineer energy and emotion. Transforming houses into high-vibration homes that nurture your soul and amplify prosperity.
+        - generic [ref=e24]:
+          - link "Begin Your Transformation" [ref=e25] [cursor=pointer]:
+            - /url: "#contact"
+            - text: Begin Your Transformation
+            - img [ref=e26]
+          - link "Explore Works" [ref=e28] [cursor=pointer]:
+            - /url: "#portfolio"
+      - generic [ref=e29]: Scroll
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - text: Energy Engineering
+        - heading "Vastu-Aligned Living" [level=2] [ref=e33]
+        - paragraph [ref=e34]: We don't just place furniture; we align your environment with the natural laws of the universe to amplify prosperity and peace.
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - generic [ref=e37]: "01"
+          - img [ref=e39]
+          - heading "Diagnostic" [level=3] [ref=e42]
+          - paragraph [ref=e43]: Detailed analysis of your site's existing energy patterns and directional alignment.
+        - generic [ref=e44]:
+          - generic [ref=e45]: "02"
+          - img [ref=e47]
+          - heading "Zoning" [level=3] [ref=e49]
+          - paragraph [ref=e50]: Strategically mapping functional areas to optimize health, wealth, and harmony.
+        - generic [ref=e51]:
+          - generic [ref=e52]: "03"
+          - img [ref=e54]
+          - heading "Design" [level=3] [ref=e59]
+          - paragraph [ref=e60]: Merging sacred geometry with modern luxury to create a balanced sanctuary.
+    - generic [ref=e62]:
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - text: Curated Works
+          - heading "A Portfolio of Transformation" [level=2] [ref=e65]:
+            - text: A Portfolio of
+            - text: Transformation
+        - paragraph [ref=e66]: Each project is a unique dialogue between architectural structure and soulful living.
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - img "The Gilded Villa" [ref=e69]
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - paragraph [ref=e73]: Luxury Residential
+              - heading "The Gilded Villa" [level=3] [ref=e74]
+            - img [ref=e76]
+        - generic [ref=e79]:
+          - img "Modern Minimalist" [ref=e80]
+          - generic [ref=e82]:
+            - generic [ref=e83]:
+              - paragraph [ref=e84]: Apartment
+              - heading "Modern Minimalist" [level=3] [ref=e85]
+            - img [ref=e87]
+        - generic [ref=e90]:
+          - img "Heritage Suite" [ref=e91]
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - paragraph [ref=e95]: Boutique Hotel
+              - heading "Heritage Suite" [level=3] [ref=e96]
+            - img [ref=e98]
+        - generic [ref=e101]:
+          - img "The Zen Office" [ref=e102]
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - paragraph [ref=e106]: Commercial
+              - heading "The Zen Office" [level=3] [ref=e107]
+            - img [ref=e109]
+    - generic [ref=e114]:
+      - generic [ref=e115]:
+        - text: Testimonials
+        - heading "The Feeling of True Harmony" [level=2] [ref=e116]:
+          - text: The Feeling of
+          - text: True Harmony
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - img [ref=e119]
+            - paragraph [ref=e122]: "\"The way Nagadurga integrated Vastu into our modern layout was magical. The energy of the house shifted immediately, and the design is timeless.\""
+            - generic [ref=e123]: Sanjay MehraLuxury Villa, Pune
+          - generic [ref=e124]:
+            - img [ref=e125]
+            - paragraph [ref=e128]: "\"True 'Quiet Luxury'. Every detail, from the Moonlit Silk walls to the brass accents, reflects a level of sophistication we hadn't found elsewhere.\""
+            - generic [ref=e129]: Priya KapoorPenthouse, Gurgaon
+          - generic [ref=e130]:
+            - img [ref=e131]
+            - paragraph [ref=e134]: "\"Their approach to 'Energy Engineering' is a game changer. It's not just about looks; it's about how you feel in the space.\""
+            - generic [ref=e135]: Aniruddh SinghFarmhouse, Alibaug
+      - generic [ref=e136]:
+        - generic [ref=e137]: 250+Projects Delivered
+        - generic [ref=e138]: 1.2MSqr Ft Transformed
+        - generic [ref=e139]: 99%Client Happiness
+    - generic [ref=e140]:
+      - generic [ref=e141]:
+        - generic [ref=e142]:
+          - text: Connect
+          - heading "Begin Your Transformation" [level=2] [ref=e143]:
+            - text: Begin Your
+            - text: Transformation
+        - generic [ref=e145]:
+          - generic [ref=e146]:
+            - text: Full Name
+            - textbox "John Doe" [ref=e147]
+          - generic [ref=e148]:
+            - text: Email Address
+            - textbox "john@example.com" [ref=e149]
+          - generic [ref=e150]:
+            - text: Project Type
+            - combobox [ref=e151]:
+              - option "Luxury Residential" [selected]
+              - option "Modern Apartment"
+              - option "Commercial Space"
+              - option "Vastu Consultation Only"
+          - generic [ref=e152]:
+            - text: Budget Range
+            - combobox [ref=e153]:
+              - option "₹10L - ₹25L" [selected]
+              - option "₹25L - ₹50L"
+              - option "₹50L - ₹1Cr"
+              - option "₹1Cr +"
+          - generic [ref=e154]:
+            - text: Vision for Your Space
+            - textbox "Tell us about your dream sanctuary..." [ref=e155]
+          - button "Request Private Consultation" [ref=e157]:
+            - text: Request Private Consultation
+            - img [ref=e158]
+      - link [ref=e161] [cursor=pointer]:
+        - /url: https://wa.me/919999999999
+        - img [ref=e162]
+  - contentinfo [ref=e164]:
+    - generic [ref=e165]:
+      - generic [ref=e166]:
+        - generic [ref=e167]: "N"
+        - generic [ref=e168]: Nagadurga.
+      - paragraph [ref=e169]: © 2026 Nagadurga Interiors. All Rights Reserved.
+      - generic [ref=e170]:
+        - link "Privacy" [ref=e171] [cursor=pointer]:
+          - /url: "#"
+        - link "Terms" [ref=e172] [cursor=pointer]:
+          - /url: "#"

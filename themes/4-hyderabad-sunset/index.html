@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nagadurga Interiors - Best Interior Designer in Hyderabad. Full-home interior solutions with Vastu-first planning, 45-day delivery, and transparent pricing.">
+    <meta name="keywords" content="interior design Hyderabad, home interiors, Vastu compliant interiors, modular kitchen Hyderabad, bedroom interior design, living room design, 3D interior visualization, best interior designer Hyderabad">
+    <title>Nagadurga Interiors | Best Interior Designer in Hyderabad</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-rose: #c44569;
+            --blush-pink: #f78fb3;
+            --sunset-orange: #e17055;
+            --soft-peach: #fdf2e9;
+            --midnight: #1a1a2e;
+            --surface: #ffffff;
+            --border: #f0d9c8;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--surface);
+            color: var(--midnight);
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-rose);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--midnight);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--deep-rose);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--midnight);
+            transition: all 0.3s;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 8rem 5% 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--sunset-orange);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--midnight);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary {
+            background: var(--deep-rose);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: #a3375a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--deep-rose);
+            padding: 1rem 2rem;
+            border: 2px solid var(--deep-rose);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--soft-peach);
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: var(--sunset-orange);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .em-badge {
+            background: var(--soft-peach);
+            color: var(--deep-rose);
+            border: 1px solid var(--deep-rose);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .rating-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: var(--sunset-orange);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .rating-badge span {
+            font-family: var(--font-mono);
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: var(--midnight);
+            padding: 1.5rem 5%;
+        }
+
+        .trust-items {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .trust-item {
+            color: var(--soft-peach);
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trust-item::before {
+            content: "✓";
+            color: var(--blush-pink);
+            font-weight: 700;
+        }
+
+        /* Features */
+        .features {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--midnight);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--deep-rose);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--midnight);
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--soft-peach);
+            padding: 6rem 5%;
+        }
+
+        .testimonials h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--midnight);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: """;
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            color: var(--blush-pink);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        .testimonial-card p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            padding-top: 2rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--midnight);
+        }
+
+        .testimonial-location {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--sunset-orange);
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--deep-rose);
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--deep-rose);
+            padding: 5rem 5%;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: white;
+            color: var(--deep-rose);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid white;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 2px solid var(--deep-rose);
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--deep-rose);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--deep-rose);
+        }
+
+        .copyright {
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 6rem;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-items {
+                justify-content: center;
+            }
+
+            .stats-row {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        /* === ANIMATION 1: Hero Cinematic Sequence === */
+        .hero-tagline .char { display: inline-block; opacity: 0; transform: translateY(20px); }
+        .hero-tagline .char.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .hero h1 .word { display: inline-block; opacity: 0; transform: translateY(20px); }
+        .hero h1 .word.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .hero-description { opacity: 0; transform: translateY(15px); transition: opacity 0.6s ease 0.8s, transform 0.6s ease 0.8s; }
+        .hero-description.visible { opacity: 1; transform: translateY(0); }
+        .hero-ctas { opacity: 0; transform: translateX(-20px); transition: opacity 0.5s ease 1s, transform 0.5s ease 1s; }
+        .hero-ctas.visible { opacity: 1; transform: translateX(0); }
+        .hero-badges { opacity: 0; transform: scale(0.8); transition: opacity 0.5s ease 1.2s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s; }
+        .hero-badges.visible { opacity: 1; transform: scale(1); }
+        .hero-image img { animation: kenBurns 20s ease-in-out infinite alternate; }
+        @keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.08); } }
+
+        /* === ANIMATION 4: Staggered Card Cascade === */
+        .feature-card, .testimonial-card { opacity: 0; transform: translateY(40px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .feature-card.visible, .testimonial-card.visible { opacity: 1; transform: translateY(0); }
+
+        /* === ANIMATION 6: Directional Reveals === */
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .reveal-scale { opacity: 0; transform: scale(0.9); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+        /* === ANIMATION 7: Trust Bar Ticker === */
+        .trust-bar { overflow: hidden; position: relative; }
+        .trust-bar__track { display: flex; gap: 60px; animation: ticker 20s linear infinite; width: max-content; }
+        .trust-bar__track:hover { animation-play-state: paused; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* === ANIMATION 8: Image Clip-Path Reveal === */
+        .clip-reveal { clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%); transition: clip-path 1s cubic-bezier(0.65, 0, 0.35, 1); }
+        .clip-reveal.visible { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+
+        /* === ANIMATION 10: Floating WhatsApp === */
+        .whatsapp-float { opacity: 0; transform: translateY(40px); animation: whatsappEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2s forwards, floatBounce 3s ease-in-out infinite 2.6s; }
+        @keyframes whatsappEnter { to { opacity: 1; transform: translateY(0); } }
+        @keyframes floatBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        /* === ANIMATION 9: Navbar Scroll Enhancement === */
+        .navbar { transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease; }
+        .navbar.scrolled { background: rgba(253,242,233,0.97) !important; backdrop-filter: blur(20px); box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+
+        .magnetic-btn { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .hero-image img { animation: none; }
+            .trust-bar__track { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo">Nagadurga Interiors</a>
+        <div class="hamburger" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#price-tool">Price Tool</a></li>
+            <li><a href="#hyderabad">Hyderabad</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero reveal">
+        <div class="hero-content">
+            <p class="hero-tagline">Est. 2024 / Hyderabad</p>
+            <h1>Sunsets at Home.</h1>
+            <p class="hero-description">Full-home interior solutions designed for modern Hyderabad living. Transparent pricing, 45-day delivery, and Vastu-first planning.</p>
+            <div class="hero-ctas">
+                <a href="#estimate" class="btn-primary">Get Free Estimate</a>
+                <a href="#design" class="btn-secondary">Claim Free 3D Design</a>
+            </div>
+            <div class="hero-badges">
+                <span class="badge">⭐ Verified 4.8/5 by 2k+ Homeowners</span>
+                <span class="badge em-badge">0% EMI available for up to 24 months.</span>
+            </div>
+        </div>
+        <div class="hero-image clip-reveal">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80" alt="Modern Hyderabad Interior Design">
+            <div class="rating-badge">
+                <span>★ 4.8/5</span> 2k+ Homeowners
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar reveal">
+        <div class="trust-bar__track">
+            <div class="trust-items">
+                <div class="trust-item">45-Day Delivery</div>
+                <div class="trust-item">10-Year Warranty</div>
+                <div class="trust-item">No Hidden Costs</div>
+                <div class="trust-item">Vastu Certified</div>
+            </div>
+            <div class="trust-items">
+                <div class="trust-item">45-Day Delivery</div>
+                <div class="trust-item">10-Year Warranty</div>
+                <div class="trust-item">No Hidden Costs</div>
+                <div class="trust-item">Vastu Certified</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features reveal">
+        <h2>Why Nagadurga</h2>
+        <div class="features-grid">
+            <div class="feature-card reveal-left">
+                <h3>Vastu Science</h3>
+                <p>Every layout is optimized for positive energy flow, balancing the five elements for a harmonious Hyderabad home.</p>
+            </div>
+            <div class="feature-card reveal-scale">
+                <h3>Tech-First Design</h3>
+                <p>Visualize your home in high-fidelity 3D before a single brick is moved. Precise and predictable.</p>
+            </div>
+            <div class="feature-card reveal-right">
+                <h3>Direct Sourcing</h3>
+                <p>We work directly with manufacturers to ensure the best materials at prices that respect your budget.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials reveal">
+        <h2>The Feeling of True Harmony</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"The way Nagadurga integrated Vastu into our modern layout was magical. The energy of the house shifted immediately, and the design is timeless."</p>
+                <div class="testimonial-author">Rajesh Reddy</div>
+                <div class="testimonial-location">3BHK, Jubilee Hills</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"True 'Quiet Luxury'. Every detail, from the warm tones to the brass accents, reflects a level of sophistication we hadn't found elsewhere in Hyderabad."</p>
+                <div class="testimonial-author">Priya Sharma</div>
+                <div class="testimonial-location">Villa, Gachibowli</div>
+            </div>
+            <div class="testimonial-card">
+                <p>"Their approach to 'Energy Engineering' is a game changer. It's not just about looks; it's about how you feel in the space. Delivered in just 38 days!"</p>
+                <div class="testimonial-author">Aniruddh Rao</div>
+                <div class="testimonial-location">2BHK, Kondapur</div>
+            </div>
+        </div>
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">250+</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">1.2M</div>
+                <div class="stat-label">Sq Ft Transformed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">99%</div>
+                <div class="stat-label">Client Happiness</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section reveal">
+        <h2>Ready for your Hyderabad home?</h2>
+        <p>Start with our interactive price tool or chat with us directly.</p>
+        <div class="cta-buttons">
+            <a href="#estimate" class="cta-primary">Get Estimate</a>
+            <a href="https://wa.me/910000000000?text=Hi%2C%20I'm%20interested%20in%20a%20quote%20for%20my%20home%20interior%20in%20Hyderabad." class="cta-secondary whatsapp-float" target="_blank">WhatsApp Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">Nagadurga Interiors</div>
+        <div class="footer-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms & Conditions</a>
+        </div>
+        <div class="copyright">© 2024 Nagadurga Interiors, Hyderabad. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        // Mobile Nav Toggle
+        function toggleNav() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        function initHeroSequence() {
+            const tagline = document.querySelector('.hero-tagline');
+            const h1 = document.querySelector('.hero h1');
+            if (tagline) { const t=tagline.textContent; tagline.innerHTML=t.split('').map((c,i)=>c===' '?' ':`<span class="char" style="transition-delay:${i*0.04}s">${c}</span>`).join(''); }
+            if (h1) { const t=h1.textContent; h1.innerHTML=t.split(' ').map((w,i)=>`<span class="word" style="transition-delay:${0.2+i*0.1}s">${w}</span>`).join(' '); }
+            setTimeout(()=>{document.querySelectorAll('.hero-tagline .char, .hero h1 .word, .hero-description, .hero-ctas, .hero-badges').forEach(el=>el.classList.add('visible'));},300);
+        }
+        function initParallax() {
+            const img=document.querySelector('.hero-image img');
+            if(!img)return;
+            window.addEventListener('scroll',()=>{img.style.transform=`translateY(${window.scrollY*0.3}px) scale(1.05)`;},{passive:true});
+        }
+        function initMagneticCursor() {
+            document.querySelectorAll('.btn-primary, .btn-secondary, .cta-primary, .cta-secondary, .magnetic-btn').forEach(btn=>{
+                btn.addEventListener('mousemove',e=>{const r=btn.getBoundingClientRect();btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*0.15}px,${(e.clientY-r.top-r.height/2)*0.15}px)`;});
+                btn.addEventListener('mouseleave',()=>{btn.style.transform='translate(0,0)';});
+            });
+        }
+        function initCardCascade() {
+            const cards=document.querySelectorAll('.feature-card, .testimonial-card');
+            const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const i=Array.from(cards).indexOf(e.target);setTimeout(()=>e.target.classList.add('visible'),(i%3)*100);obs.unobserve(e.target);}});},{threshold:0.15});
+            cards.forEach(c=>obs.observe(c));
+        }
+        function animateCounters() {
+            const counters=document.querySelectorAll('.stat-value');
+            const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const el=e.target,t=el.textContent,m=t.match(/([\d.]+)/);if(!m)return;const target=parseFloat(m[1]),pre=t.slice(0,t.indexOf(m[1])),suf=t.slice(t.indexOf(m[1])+m[1].length),dec=m[1].includes('.');let start=performance.now();function upd(now){const p=Math.min((now-start)/2000,1),eased=1-Math.pow(1-p,3),cur=dec?(target*eased).toFixed(1):Math.floor(target*eased);el.textContent=pre+cur+suf;if(p<1)requestAnimationFrame(upd);}requestAnimationFrame(upd);obs.unobserve(el);}});},{threshold:0.5});
+            counters.forEach(c=>obs.observe(c));
+        }
+        function initDirectionalReveals() {
+            const reveals=document.querySelectorAll('.reveal-left, .reveal-right, .reveal-scale');
+            const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.15});
+            reveals.forEach(el=>obs.observe(el));
+        }
+        function initClipReveal() {
+            const imgs=document.querySelectorAll('.clip-reveal');
+            const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.3});
+            imgs.forEach(i=>obs.observe(i));
+        }
+        function initNavbarBlur() {
+            const nb=document.querySelector('.navbar');if(!nb)return;
+            window.addEventListener('scroll',()=>{nb.classList.toggle('scrolled',window.scrollY>50);},{passive:true});
+        }
+        document.addEventListener('DOMContentLoaded',()=>{initHeroSequence();initParallax();initMagneticCursor();initCardCascade();animateCounters();initDirectionalReveals();initClipReveal();initNavbarBlur();});
+    </script>
+</body>
+</html>
