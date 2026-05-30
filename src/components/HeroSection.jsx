@@ -9,7 +9,7 @@ const HeroSection = ({ onNavigate }) => {
   const { scrollY } = useScroll();
   const parallaxY = useTransform(scrollY, [0, 500], [0, 150]);
 
-  const tagline = "Est. 2024 / Hyderabad";
+  const tagline = "Est. 2018 / Hyderabad";
   const headline = "Interiors that Tell Your Story.";
 
   const containerVariants = {
@@ -93,14 +93,7 @@ const HeroSection = ({ onNavigate }) => {
           </a>
         </motion.div>
 
-        <motion.div
-          className="emi-badge"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ type: 'spring', damping: 10, delay: 1.2 }}
-        >
-          <strong>0% EMI</strong> available for up to 24 months.
-        </motion.div>
+
       </div>
 
       <motion.div
@@ -121,7 +114,7 @@ const HeroSection = ({ onNavigate }) => {
           animate={isInView ? { opacity: 1, x: 0, rotate: -2 } : {}}
           transition={{ type: 'spring', damping: 10, delay: 1.4 }}
         >
-          Verified 4.8/5 by 2k+ Homeowners
+          Verified 4.8/5 by 500+ Homeowners
         </motion.div>
       </motion.div>
     </section>

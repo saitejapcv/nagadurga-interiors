@@ -154,20 +154,20 @@ const BhkLanding = ({ onNavigate }) => {
           <div className="mono" style={{ marginBottom: '1rem', opacity: 0.7 }}>
             Experience Center
           </div>
-          <h2>Visit Us in Jubilee Hills.</h2>
+          <h2>View Our Completed Projects.</h2>
           <p>
-            Touch our materials, test our hardware, and meet our lead designers at
-            our Hyderabad Experience Center in the heart of Jubilee Hills.
+            Explore our portfolio of completed interior projects across Hyderabad. See the quality of our work firsthand.
           </p>
           <motion.a
-            href="https://maps.google.com/?q=Jubilee+Hills+Hyderabad"
+            href="#/portfolio"
             target="_blank"
             rel="noopener noreferrer"
             className="btn"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={(e) => { e.preventDefault(); onNavigate('portfolio'); }}
           >
-            Book a Showroom Visit
+            View Portfolio
           </motion.a>
         </div>
       </motion.section>
@@ -193,7 +193,7 @@ const BhkLanding = ({ onNavigate }) => {
               Get Estimate
             </motion.a>
             <motion.a
-              href="https://wa.me/910000000000?text=Hi,%20I'm%20interested%20in%20a%202BHK%20interior%20in%20Hyderabad."
+              href="https://wa.me/918523013312?text=Hi,%20I'm%20interested%20in%20a%202BHK%20interior%20in%20Hyderabad."
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary"

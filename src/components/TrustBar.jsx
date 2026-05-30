@@ -3,9 +3,9 @@ import React from 'react';
 const TrustBar = () => {
   const items = [
     '45-Day Delivery',
-    '10-Year Warranty',
+    '5-Year Warranty',
     'No Hidden Costs',
-    'Vastu Certified',
+    '99% Vastu Compliant',
   ];
 
   return (

@@ -182,7 +182,7 @@ const Calculator = () => {
                 Actual costs may vary by +/- 15% depending on specific finishes.
               </p>
               <motion.a
-                href="https://wa.me/910000000000?text=Hi,%20I%20just%20got%20an%20estimate%20of%20"
+                href="https://wa.me/918523013312?text=Hi,%20I%20just%20got%20an%20estimate%20of%20"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn"
@@ -191,9 +191,7 @@ const Calculator = () => {
               >
                 Book Free Consultation
               </motion.a>
-              <div className="result-emi">
-                0% EMI available — as low as {formatCurrency(Math.round(calculateEstimate() / 24))}/month
-              </div>
+
             </motion.div>
           )}
         </AnimatePresence>

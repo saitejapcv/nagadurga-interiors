@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const WhatsAppWidget = () => {
-  const phoneNumber = '910000000000';
+  const phoneNumber = '918523013312';
   const message = encodeURIComponent(
     "Hi, I'm interested in a quote for my home interior in Hyderabad."
   );

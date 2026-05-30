@@ -6,8 +6,6 @@ const BeforeAfter = () => {
   const beforeRef = useRef(null);
   const handleRef = useRef(null);
   const isDragging = useRef(false);
-  const revealRef = useRef(null);
-  const isInView = useInView(revealRef, { once: true, amount: 0.3 });
 
   const updateSlider = useCallback((clientX) => {
     const container = containerRef.current;
@@ -27,7 +25,7 @@ const BeforeAfter = () => {
   const handleTouchMove = (e) => updateSlider(e.touches[0].clientX);
 
   return (
-    <section className="ba-section" ref={revealRef}>
+    <section className="ba-section">
       <div className="container">
         <div className="mono" style={{ textAlign: 'center', marginBottom: '1rem' }}>
           Results / Before & After
@@ -37,26 +35,30 @@ const BeforeAfter = () => {
         </h2>
 
         <motion.div
-          ref={containerRef}
-          className="ba-container"
-          onMouseMove={handleMouseMove}
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          onTouchMove={handleTouchMove}
-          initial={{ clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)' }}
-          animate={isInView ? { clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' } : {}}
-          transition={{ duration: 1, ease: [0.65, 0, 0.35, 1] }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <div className="ba-image ba-after">
-            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=80" alt="After — finished interior" loading="lazy" />
+          <div
+            ref={containerRef}
+            className="ba-container"
+            onMouseMove={handleMouseMove}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onTouchMove={handleTouchMove}
+          >
+            <div className="ba-image ba-after">
+              <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80" alt="After — fully furnished interior" loading="lazy" />
+            </div>
+            <div className="ba-image ba-before" ref={beforeRef}>
+              <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1920&q=80" alt="Before — empty raw space" loading="lazy" />
+            </div>
+            <div className="ba-handle" ref={handleRef}></div>
+            <div className="ba-label" style={{ left: '1.5rem' }}>Before</div>
+            <div className="ba-label" style={{ right: '1.5rem' }}>After</div>
           </div>
-          <div className="ba-image ba-before" ref={beforeRef}>
-            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1920&q=80" alt="Before — raw space" loading="lazy" />
-          </div>
-          <div className="ba-handle" ref={handleRef}></div>
-          <div className="ba-label" style={{ left: '1.5rem' }}>Before</div>
-          <div className="ba-label" style={{ right: '1.5rem' }}>After</div>
         </motion.div>
       </div>
     </section>

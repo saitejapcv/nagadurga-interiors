@@ -20,8 +20,8 @@ const testimonials = [
 ];
 
 const stats = [
-  { value: 250, suffix: '+', label: 'Projects Delivered' },
-  { value: 1.2, suffix: 'M', label: 'Sq Ft Transformed', decimal: true },
+  { value: 100, suffix: '+', label: 'Projects Delivered' },
+  { value: 100, suffix: 'K+', label: 'Sq Ft Transformed' },
   { value: 99, suffix: '%', label: 'Client Happiness' },
 ];
 
