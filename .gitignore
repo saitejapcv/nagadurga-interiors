@@ -30,3 +30,11 @@ playwright-report/
 
 # Misc
 *.local
+
+# Sensitive files
+Skill.md
+*.env
+.env
+.claude/
+.playwright-mcp/
+.firebaserc
