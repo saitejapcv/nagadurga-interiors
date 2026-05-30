@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const FreeDesignOffer = ({ onShowMaintenance }) => {
+const WHATSAPP_NUMBER = '918523013312';
+
+const FreeDesignOffer = () => {
   return (
     <motion.section
       className="free-offer"
@@ -20,8 +22,9 @@ const FreeDesignOffer = ({ onShowMaintenance }) => {
         </p>
         <motion.a
           className="btn"
-          onClick={onShowMaintenance}
-          style={{ cursor: 'pointer' }}
+          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi, I'd like to book a free consultation for home interior design. I'm interested in the free 3D render offer.")}`}
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 
-const HeroSection = ({ onShowMaintenance }) => {
+const WHATSAPP_NUMBER = '918523013312';
+
+const HeroSection = () => {
   const sectionRef = useRef(null);
   const h1Ref = useRef(null);
   const isInView = useInView(sectionRef, { once: true });
@@ -85,7 +87,12 @@ const HeroSection = ({ onShowMaintenance }) => {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, delay: 1 }}
         >
-          <a className="btn btn-primary" onClick={onShowMaintenance} style={{ cursor: 'pointer' }}>
+          <a
+            className="btn btn-primary"
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi, I'd like to get a free estimate for my home interior in Hyderabad.")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Get Free Estimate
           </a>
           <a className="btn btn-secondary" href="#3d-offer">
