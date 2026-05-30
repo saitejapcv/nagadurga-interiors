@@ -12,6 +12,7 @@ import PortfolioPage from './components/PortfolioPage';
 import Calculator from './components/Calculator';
 import BhkLanding from './components/BhkLanding';
 import WhatsAppWidget from './components/WhatsAppWidget';
+import MaintenanceToast from './components/MaintenanceToast';
 import Footer from './components/Footer';
 
 function getPageFromHash() {
@@ -25,6 +26,7 @@ function getPageFromHash() {
 
 function App() {
   const [currentPage, setCurrentPage] = useState(getPageFromHash);
+  const [showMaintenance, setShowMaintenance] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -95,14 +97,14 @@ function App() {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
               <div className="container">
-                <HeroSection onNavigate={navigate} />
+                <HeroSection onShowMaintenance={() => setShowMaintenance(true)} />
               </div>
               <TrustBar />
               <BeforeAfter />
               <FeatureGrid />
               <VastuSection />
               <Testimonials />
-              <FreeDesignOffer onNavigate={navigate} />
+              <FreeDesignOffer onShowMaintenance={() => setShowMaintenance(true)} />
             </motion.div>
           </AnimatePresence>
         );
@@ -115,6 +117,7 @@ function App() {
       <main>{renderPage()}</main>
       <Footer />
       <WhatsAppWidget />
+      <MaintenanceToast show={showMaintenance} onClose={() => setShowMaintenance(false)} />
     </>
   );
 }

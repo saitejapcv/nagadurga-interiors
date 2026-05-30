@@ -4,12 +4,6 @@ const Navbar = ({ currentPage, onNavigate }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const links = [
-    { name: 'Portfolio', page: 'portfolio' },
-    { name: 'Price Tool', page: 'calculator' },
-    { name: 'Hyderabad', page: 'hyderabad' },
-  ];
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -18,8 +12,8 @@ const Navbar = ({ currentPage, onNavigate }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNav = (page) => {
-    onNavigate(page);
+  const handleHome = () => {
+    onNavigate('home');
     setIsOpen(false);
     window.scrollTo(0, 0);
   };
@@ -27,7 +21,7 @@ const Navbar = ({ currentPage, onNavigate }) => {
   return (
     <div className="container">
       <nav className={`site-nav ${scrolled ? 'scrolled' : ''}`}>
-        <a className="logo" onClick={() => handleNav('home')} style={{ cursor: 'pointer' }}>
+        <a className="logo" onClick={handleHome} style={{ cursor: 'pointer' }}>
           Nagadurga Interiors
         </a>
 
@@ -40,19 +34,6 @@ const Navbar = ({ currentPage, onNavigate }) => {
           <span></span>
           <span></span>
         </button>
-
-        <div className={`nav-links ${isOpen ? 'open' : ''}`}>
-          {links.map((link) => (
-            <a
-              key={link.page}
-              className={currentPage === link.page ? 'active' : ''}
-              onClick={() => handleNav(link.page)}
-              style={{ cursor: 'pointer' }}
-            >
-              {link.name}
-            </a>
-          ))}
-        </div>
       </nav>
     </div>
   );

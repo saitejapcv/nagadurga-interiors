@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const FreeDesignOffer = ({ onNavigate }) => {
+const FreeDesignOffer = ({ onShowMaintenance }) => {
   return (
     <motion.section
       className="free-offer"
@@ -20,7 +20,7 @@ const FreeDesignOffer = ({ onNavigate }) => {
         </p>
         <motion.a
           className="btn"
-          onClick={() => onNavigate('calculator')}
+          onClick={onShowMaintenance}
           style={{ cursor: 'pointer' }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
