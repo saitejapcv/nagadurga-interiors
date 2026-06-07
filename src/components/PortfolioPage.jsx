@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getStoredProjects } from './AdminPage';
 
-const FILTERS = [
-  { id: 'all', label: 'All Projects' },
-  { id: 'jubilee-hills', label: 'Jubilee Hills' },
-  { id: 'gachibowli', label: 'Gachibowli' },
-  { id: 'kondapur', label: 'Kondapur' },
-  { id: '2bhk', label: '2BHK' },
-  { id: 'luxury', label: 'Luxury' },
-];
+function formatTagLabel(tag) {
+  if (!tag) return '';
+  if (tag.toLowerCase() === '2bhk') return '2BHK';
+  if (tag.toLowerCase() === '3bhk') return '3BHK';
+  return tag
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
 
 const PortfolioPage = ({ onNavigate }) => {
   const [projects, setProjects] = useState([]);
@@ -24,6 +25,37 @@ const PortfolioPage = ({ onNavigate }) => {
   useEffect(() => {
     setProjects(getStoredProjects());
   }, []);
+
+  const filters = React.useMemo(() => {
+    const counts = {};
+    projects.forEach(p => {
+      if (p.tags) {
+        p.tags.forEach(t => {
+          counts[t] = (counts[t] || 0) + 1;
+        });
+      }
+    });
+    
+    const sortedTags = Object.entries(counts)
+      .map(([tag, count]) => ({
+        id: tag,
+        label: formatTagLabel(tag),
+        count
+      }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5);
+      
+    return [
+      { id: 'all', label: 'All Projects' },
+      ...sortedTags
+    ];
+  }, [projects]);
+
+  useEffect(() => {
+    if (activeFilter !== 'all' && !filters.some(f => f.id === activeFilter)) {
+      setActiveFilter('all');
+    }
+  }, [filters, activeFilter]);
 
   const filtered = activeFilter === 'all'
     ? projects
@@ -82,7 +114,7 @@ const PortfolioPage = ({ onNavigate }) => {
         </motion.header>
 
         <div className="filter-bar">
-          {FILTERS.map((f) => (
+          {filters.map((f) => (
             <motion.span
               key={f.id}
               className={`filter-item ${activeFilter === f.id ? 'active' : ''}`}
