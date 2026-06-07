@@ -60,7 +60,7 @@ const BeforeAfter = () => {
             From Shell to Soul.
           </h2>
           <p style={{ color: 'var(--muted)', maxWidth: '500px', margin: '1rem auto 0', fontSize: '0.95rem' }}>
-            Drag the slider or click anywhere on the frame to see our design transformation of a raw concrete shell in Kondapur.
+            Drag the slider or click anywhere on the frame to see our design transformation of a raw concrete shell in EIPL Cornerstone.
           </p>
         </div>
 
@@ -183,7 +183,7 @@ const BeforeAfter = () => {
               gap: '0.5rem',
               whiteSpace: 'nowrap'
             }}>
-              <span>Kondapur Suite</span>
+              <span>EIPL Cornerstone</span>
               <span style={{ color: 'var(--accent)' }}>•</span>
               <span>45 Days Handover</span>
             </div>
