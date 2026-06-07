@@ -51,6 +51,22 @@ const AdminPage = ({ onNavigate }) => {
   const [passwordError, setPasswordError] = useState('');
   const [passwordSuccess, setPasswordSuccess] = useState('');
 
+  // Export code state
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  // Close modals on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setShowPasswordModal(false);
+        setShowExportModal(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   // Check session token on mount
   useEffect(() => {
     const checkSession = async () => {
@@ -250,6 +266,34 @@ const AdminPage = ({ onNavigate }) => {
     }, 1500);
   };
 
+  // Helper to serialize and format projects code
+  const generateExportCode = () => {
+    return `export const defaultProjects = ${JSON.stringify(projects, null, 2)};\n`;
+  };
+
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(generateExportCode())
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch((err) => {
+        console.error('Clipboard copy failed: ', err);
+        // Fallback for browsers/contexts that don't support navigator.clipboard
+        const textarea = document.getElementById('export-code-textarea');
+        if (textarea) {
+          textarea.select();
+          try {
+            document.execCommand('copy');
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+          } catch (e) {
+            alert('Failed to copy code automatically. Please select all text and copy manually.');
+          }
+        }
+      });
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="container" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -341,9 +385,12 @@ const AdminPage = ({ onNavigate }) => {
           <span className="mono" style={{ color: 'var(--accent)' }}>System Dashboard</span>
           <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2.5rem', marginTop: '0.5rem' }}>Portfolio Control Centre</h1>
         </div>
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <button onClick={() => setShowPasswordModal(true)} className="btn btn-secondary" style={{ padding: '0.75rem 1.5rem' }}>
             Change Secret
+          </button>
+          <button onClick={() => setShowExportModal(true)} className="btn btn-secondary" style={{ padding: '0.75rem 1.5rem' }}>
+            Export Code
           </button>
           <button onClick={handleResetToDefaults} className="btn" style={{ padding: '0.75rem 1.5rem', borderColor: 'var(--accent)', color: 'var(--accent)' }}>
             Reset Portfolio
@@ -703,6 +750,85 @@ const AdminPage = ({ onNavigate }) => {
                   </button>
                 </div>
               </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Export Portfolio Code Modal */}
+      <AnimatePresence>
+        {showExportModal && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowExportModal(false)}
+            style={{
+              position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
+            }}
+          >
+            <motion.div 
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+              style={{
+                background: 'var(--surface)', border: '1px solid var(--border)', padding: '2.5rem', width: '100%', maxWidth: '750px', borderRadius: '4px', boxShadow: '0 20px 40px rgba(0,0,0,0.15)', display: 'flex', flexDirection: 'column', gap: '1.5rem', maxHeight: '90vh'
+              }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="export-modal-title"
+            >
+              <div>
+                <span className="mono" style={{ color: 'var(--accent)' }}>Database Synchronization</span>
+                <h3 id="export-modal-title" style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', marginTop: '0.25rem' }}>Export Portfolio Code</h3>
+              </div>
+
+              <div style={{ fontSize: '0.85rem', color: 'var(--muted)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <p>Since this site is hosted statically on Firebase, changes made here are saved to your local browser storage. To synchronize your updates globally across all devices and clients:</p>
+                <ol style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', listStyleType: 'decimal' }}>
+                  <li>Click <strong>Copy Code</strong> below to copy the new configuration code to your clipboard.</li>
+                  <li>Open the project file <code>src/data/defaultProjects.js</code> in your code editor.</li>
+                  <li>Replace the entire file content with the copied code and save the file.</li>
+                  <li>Commit and push the changes to GitHub (e.g., <code>git commit -am "update portfolio" && git push origin master</code>).</li>
+                  <li>GitHub Actions will build and deploy the new portfolio data to Firebase Hosting automatically.</li>
+                </ol>
+                <p style={{ marginTop: '0.5rem', fontStyle: 'italic', borderLeft: '3px solid var(--accent)', paddingLeft: '0.75rem' }}>
+                  <strong>Note for other devices:</strong> If you are logged into the admin dashboard on other devices, click the <strong>Reset Portfolio</strong> button on those devices to clear outdated cache and load the newly deployed defaults.
+                </p>
+              </div>
+
+              <div style={{ position: 'relative' }}>
+                <textarea
+                  id="export-code-textarea"
+                  readOnly
+                  value={generateExportCode()}
+                  onClick={(e) => e.target.select()}
+                  style={{
+                    width: '100%',
+                    height: '200px',
+                    padding: '1rem',
+                    border: '1px solid var(--border)',
+                    background: 'var(--bg)',
+                    color: 'var(--fg)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.75rem',
+                    borderRadius: '2px',
+                    resize: 'none',
+                    outline: 'none',
+                    whiteSpace: 'pre'
+                  }}
+                />
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
+                <button type="button" onClick={() => setShowExportModal(false)} className="btn" style={{ padding: '0.65rem 1.5rem' }}>
+                  Close
+                </button>
+                <button type="button" onClick={handleCopyCode} className="btn btn-primary" style={{ padding: '0.65rem 2rem' }}>
+                  {copied ? '✓ Copied!' : 'Copy Code'}
+                </button>
+              </div>
             </motion.div>
           </motion.div>
         )}
