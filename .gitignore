@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Firebase
+.firebase/
+*.log
+
+# Playwright
+test-results/
+playwright-report/
+
+# Misc
+*.local
+
+# Sensitive files
+Skill.md
+*.env
+.env
+.claude/
+.playwright-mcp/
+.firebaserc
