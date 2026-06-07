@@ -15,17 +15,19 @@ import WhatsAppWidget from './components/WhatsAppWidget';
 import Footer from './components/Footer';
 import AdminPage from './components/AdminPage';
 
-if (window.location.pathname === '/admin' || window.location.pathname === '/admin/') {
-  window.history.replaceState({}, '', '/#/admin');
-}
-
 function getPageFromHash() {
   const hash = window.location.hash.replace('#/', '').replace('#', '');
-  if (!hash || hash === 'home') return 'home';
-  if (hash === 'portfolio') return 'portfolio';
-  if (hash === 'calculator') return 'calculator';
-  if (hash === 'hyderabad') return 'hyderabad';
-  if (hash === 'admin') return 'admin';
+  if (hash) {
+    if (hash === 'portfolio') return 'portfolio';
+    if (hash === 'calculator') return 'calculator';
+    if (hash === 'hyderabad') return 'hyderabad';
+    if (hash === 'admin') return 'admin';
+    if (hash === 'home') return 'home';
+  }
+  
+  const path = window.location.pathname.replace(/^\/|\/$/g, '');
+  if (path === 'admin') return 'admin';
+  
   return 'home';
 }
 
@@ -33,16 +35,28 @@ function App() {
   const [currentPage, setCurrentPage] = useState(getPageFromHash);
 
   useEffect(() => {
-    const handleHashChange = () => {
+    const handleNavigation = () => {
       setCurrentPage(getPageFromHash());
     };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('hashchange', handleNavigation);
+    window.addEventListener('popstate', handleNavigation);
+    return () => {
+      window.removeEventListener('hashchange', handleNavigation);
+      window.removeEventListener('popstate', handleNavigation);
+    };
   }, []);
 
   const navigate = (page) => {
-    window.location.hash = '#/' + page;
-    setCurrentPage(page);
+    if (page === 'admin') {
+      window.history.pushState({}, '', '/admin');
+      setCurrentPage('admin');
+    } else if (window.location.pathname !== '/' && page !== 'admin') {
+      window.history.pushState({}, '', '/' + (page === 'home' ? '' : '#/' + page));
+      setCurrentPage(page);
+    } else {
+      window.location.hash = '#/' + page;
+      setCurrentPage(page);
+    }
     window.scrollTo(0, 0);
   };
 
@@ -133,7 +147,7 @@ function App() {
     <>
       <Navbar currentPage={currentPage} onNavigate={navigate} />
       <main>{renderPage()}</main>
-      <Footer />
+      <Footer onNavigate={navigate} />
       <WhatsAppWidget />
     </>
   );

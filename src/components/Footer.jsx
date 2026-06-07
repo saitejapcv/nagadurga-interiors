@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Footer = () => {
+const Footer = ({ onNavigate }) => {
   return (
     <motion.footer
       className="site-footer"
@@ -17,7 +17,16 @@ const Footer = () => {
             © {new Date().getFullYear()} Nagadurga Interiors, Hyderabad. All Rights Reserved.
           </div>
           <div className="footer-links">
-            <a href="#/admin" style={{ fontSize: '0.85rem', color: 'var(--muted)', textDecoration: 'none' }}>Admin Portal</a>
+            <a 
+              href="/admin" 
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('admin');
+              }}
+              style={{ fontSize: '0.85rem', color: 'var(--muted)', textDecoration: 'none' }}
+            >
+              Admin Portal
+            </a>
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
           </div>
