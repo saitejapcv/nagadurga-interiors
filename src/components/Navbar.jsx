@@ -25,6 +25,37 @@ const Navbar = ({ currentPage, onNavigate }) => {
           Nagadurga Interiors
         </a>
 
+        <div className={`nav-links ${isOpen ? 'open' : ''}`}>
+          <a 
+            className={currentPage === 'home' ? 'active' : ''} 
+            onClick={() => { onNavigate('home'); setIsOpen(false); }}
+            style={{ cursor: 'pointer' }}
+          >
+            Home
+          </a>
+          <a 
+            className={currentPage === 'portfolio' ? 'active' : ''} 
+            onClick={() => { onNavigate('portfolio'); setIsOpen(false); }}
+            style={{ cursor: 'pointer' }}
+          >
+            Portfolio
+          </a>
+          <a 
+            className={currentPage === 'calculator' ? 'active' : ''} 
+            onClick={() => { onNavigate('calculator'); setIsOpen(false); }}
+            style={{ cursor: 'pointer' }}
+          >
+            Price Tool
+          </a>
+          <a 
+            className={currentPage === 'hyderabad' ? 'active' : ''} 
+            onClick={() => { onNavigate('hyderabad'); setIsOpen(false); }}
+            style={{ cursor: 'pointer' }}
+          >
+            Hyderabad
+          </a>
+        </div>
+
         <button
           className={`nav-toggle ${isOpen ? 'open' : ''}`}
           onClick={() => setIsOpen(!isOpen)}

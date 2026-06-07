@@ -13,6 +13,7 @@ import Calculator from './components/Calculator';
 import BhkLanding from './components/BhkLanding';
 import WhatsAppWidget from './components/WhatsAppWidget';
 import Footer from './components/Footer';
+import AdminPage from './components/AdminPage';
 
 function getPageFromHash() {
   const hash = window.location.hash.replace('#/', '').replace('#', '');
@@ -20,6 +21,7 @@ function getPageFromHash() {
   if (hash === 'portfolio') return 'portfolio';
   if (hash === 'calculator') return 'calculator';
   if (hash === 'hyderabad') return 'hyderabad';
+  if (hash === 'admin') return 'admin';
   return 'home';
 }
 
@@ -81,6 +83,20 @@ function App() {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
               <BhkLanding onNavigate={navigate} />
+            </motion.div>
+          </AnimatePresence>
+        );
+      case 'admin':
+        return (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key="admin"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
+              <AdminPage onNavigate={navigate} />
             </motion.div>
           </AnimatePresence>
         );

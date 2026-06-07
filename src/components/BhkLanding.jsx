@@ -1,24 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
-
-const projects = [
-  {
-    title: 'The Jubilee Hills Minimalist',
-    description: 'A study in white and oak, maximizing natural light in a compact 850 sq.ft. space.',
-    img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
-    city: 'Jubilee Hills',
-    budget: '₹8.2 Lakh',
-    timeline: '40 Days',
-  },
-  {
-    title: 'Kondapur Lakeside Residence',
-    description: 'Integrating industrial textures with warm lighting for a young professional couple.',
-    img: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80',
-    city: 'Kondapur',
-    budget: '₹7.5 Lakh',
-    timeline: '45 Days',
-  },
-];
+import { getStoredProjects } from './AdminPage';
 
 const statItems = [
   { value: 420, suffix: '+', label: 'Projects Completed in Hyderabad' },
@@ -57,6 +39,14 @@ const AnimatedStat = ({ value, suffix, prefix = '', decimal }) => {
 };
 
 const BhkLanding = ({ onNavigate }) => {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const allProjects = getStoredProjects();
+    const filtered = allProjects.filter(p => p.tags && p.tags.includes('2bhk')).slice(0, 3);
+    setProjects(filtered);
+  }, []);
+
   return (
     <div className="page-enter">
       <div className="container">
@@ -126,7 +116,7 @@ const BhkLanding = ({ onNavigate }) => {
                 <div className="metadata">
                   <div className="metadata-item">
                     <span>AREA</span>
-                    {project.city.toUpperCase()}
+                    {(project.location || project.city || 'HYDERABAD').toUpperCase()}
                   </div>
                   <div className="metadata-item">
                     <span>BUDGET</span>
