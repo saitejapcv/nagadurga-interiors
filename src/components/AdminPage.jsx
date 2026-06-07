@@ -119,8 +119,15 @@ const AdminPage = ({ onNavigate }) => {
     setLoginError('');
 
     try {
-      // Map 'admin' username to email for convenience, or accept a standard email format
-      const email = username.includes('@') ? username : `${username}@nagadurga-interiors.com`;
+      // Map 'admin' username to your registered email for convenience, or accept standard email formats
+      let email = username;
+      if (!username.includes('@')) {
+        if (username.toLowerCase() === 'admin') {
+          email = 'charandeviswamy@gmail.com';
+        } else {
+          email = `${username}@nagadurga-interiors.com`;
+        }
+      }
       await signInWithEmailAndPassword(auth, email, password);
       setPassword('');
     } catch (err) {
