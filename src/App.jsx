@@ -15,6 +15,10 @@ import WhatsAppWidget from './components/WhatsAppWidget';
 import Footer from './components/Footer';
 import AdminPage from './components/AdminPage';
 
+if (window.location.pathname === '/admin' || window.location.pathname === '/admin/') {
+  window.history.replaceState({}, '', '/#/admin');
+}
+
 function getPageFromHash() {
   const hash = window.location.hash.replace('#/', '').replace('#', '');
   if (!hash || hash === 'home') return 'home';
