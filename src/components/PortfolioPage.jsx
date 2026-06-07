@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getStoredProjects } from './AdminPage';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
+import { defaultProjects } from '../data/defaultProjects';
 
 function formatTagLabel(tag) {
   if (!tag) return '';
@@ -21,9 +23,23 @@ const PortfolioPage = ({ onNavigate }) => {
   const [activeImg, setActiveImg] = useState(null);
   const [galleryCategory, setGalleryCategory] = useState('All');
 
-  // Load projects from localStorage on mount
+  // Load projects from Firestore on mount
   useEffect(() => {
-    setProjects(getStoredProjects());
+    const fetchProjects = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "projects"));
+        if (querySnapshot.empty) {
+          setProjects(defaultProjects);
+        } else {
+          const projList = querySnapshot.docs.map(doc => doc.data());
+          setProjects(projList);
+        }
+      } catch (err) {
+        console.error("Error loading projects from Firestore:", err);
+        setProjects(defaultProjects);
+      }
+    };
+    fetchProjects();
   }, []);
 
   const filters = React.useMemo(() => {

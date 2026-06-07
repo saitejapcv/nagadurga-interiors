@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { hashPassword, generateSessionToken, verifySessionToken, DEFAULT_PASSWORD_HASH } from '../utils/crypto';
+import { 
+  onAuthStateChanged, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  updatePassword 
+} from 'firebase/auth';
+import { 
+  collection, 
+  getDocs, 
+  doc, 
+  setDoc, 
+  deleteDoc, 
+  writeBatch 
+} from 'firebase/firestore';
+import { auth, db } from '../firebase';
 import { defaultProjects } from '../data/defaultProjects';
 
-// Helpers to load and save portfolio items in localStorage
+// Deprecated: left for compatibility, pages now query Firestore directly
 export function getStoredProjects() {
-  const data = localStorage.getItem('nagadurga_portfolio_projects');
-  if (data) {
-    try {
-      return JSON.parse(data);
-    } catch (e) {
-      console.error("Error parsing stored projects", e);
-    }
-  }
-  // Initialize with defaults if empty
-  localStorage.setItem('nagadurga_portfolio_projects', JSON.stringify(defaultProjects));
   return defaultProjects;
-}
-
-export function saveStoredProjects(projects) {
-  localStorage.setItem('nagadurga_portfolio_projects', JSON.stringify(projects));
 }
 
 const CATEGORIES = ['Living Room', 'Bedroom', 'Kitchen', 'Dining Area', 'Puja Unit', 'Others'];
@@ -30,6 +30,7 @@ const AdminPage = ({ onNavigate }) => {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   
   // Form fields for editing/adding
   const [selectedProject, setSelectedProject] = useState(null);
@@ -51,37 +52,65 @@ const AdminPage = ({ onNavigate }) => {
   const [passwordError, setPasswordError] = useState('');
   const [passwordSuccess, setPasswordSuccess] = useState('');
 
-  // Export code state
-  const [showExportModal, setShowExportModal] = useState(false);
-  const [copied, setCopied] = useState(false);
+  // Sync projects from Firestore
+  const fetchProjects = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "projects"));
+      if (querySnapshot.empty) {
+        // Automatically initialize database with default projects on first load
+        await initializeFirestoreProjects();
+      } else {
+        const projList = querySnapshot.docs.map(doc => doc.data());
+        // Sort projects to match the defaultProjects order (if possible) or display newest
+        setProjects(projList);
+      }
+    } catch (e) {
+      console.error("Error fetching projects from Firestore:", e);
+      setProjects(defaultProjects);
+    }
+  };
+
+  const initializeFirestoreProjects = async () => {
+    try {
+      const batch = writeBatch(db);
+      defaultProjects.forEach((proj) => {
+        const docRef = doc(db, "projects", proj.id);
+        batch.set(docRef, proj);
+      });
+      await batch.commit();
+      setProjects(defaultProjects);
+      console.log("Firestore initialized with default projects.");
+    } catch (e) {
+      console.error("Error initializing Firestore database:", e);
+    }
+  };
+
+  // Monitor Auth State
+  useEffect(() => {
+    setIsLoading(true);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setIsAuthenticated(true);
+        await fetchProjects();
+      } else {
+        setIsAuthenticated(false);
+        setProjects([]);
+      }
+      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   // Close modals on Escape key press
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setShowPasswordModal(false);
-        setShowExportModal(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  // Check session token on mount
-  useEffect(() => {
-    const checkSession = async () => {
-      const token = sessionStorage.getItem('admin_session_token');
-      if (token) {
-        const isValid = await verifySessionToken(token);
-        if (isValid) {
-          setIsAuthenticated(true);
-          setProjects(getStoredProjects());
-        } else {
-          sessionStorage.removeItem('admin_session_token');
-        }
-      }
-    };
-    checkSession();
   }, []);
 
   // Handle Login
@@ -89,31 +118,27 @@ const AdminPage = ({ onNavigate }) => {
     e.preventDefault();
     setLoginError('');
 
-    if (username !== 'admin') {
-      setLoginError('Invalid credentials');
-      return;
-    }
-
-    const enteredHash = await hashPassword(password);
-    const storedHash = localStorage.getItem('admin_password_hash') || DEFAULT_PASSWORD_HASH;
-
-    if (enteredHash === storedHash) {
-      const token = await generateSessionToken(username);
-      sessionStorage.setItem('admin_session_token', token);
-      setIsAuthenticated(true);
-      setProjects(getStoredProjects());
+    try {
+      // Map 'admin' username to email for convenience, or accept a standard email format
+      const email = username.includes('@') ? username : `${username}@nagadurga-interiors.com`;
+      await signInWithEmailAndPassword(auth, email, password);
       setPassword('');
-    } else {
-      setLoginError('Incorrect password');
+    } catch (err) {
+      console.error("Firebase auth login failed:", err);
+      setLoginError('Incorrect credentials or login failed. Make sure you added this user in your Auth console.');
     }
   };
 
   // Handle Logout
-  const handleLogout = () => {
-    sessionStorage.removeItem('admin_session_token');
-    setIsAuthenticated(false);
-    setSelectedProject(null);
-    setIsEditing(false);
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setIsAuthenticated(false);
+      setSelectedProject(null);
+      setIsEditing(false);
+    } catch (e) {
+      console.error("Logout failed:", e);
+    }
   };
 
   // Handle Select Project for Editing
@@ -145,7 +170,7 @@ const AdminPage = ({ onNavigate }) => {
   };
 
   // Save/Update Project
-  const handleSaveProject = (e) => {
+  const handleSaveProject = async (e) => {
     e.preventDefault();
     if (!formTitle || !formLocation) {
       alert("Title and Location are required.");
@@ -169,40 +194,66 @@ const AdminPage = ({ onNavigate }) => {
       gallery: formGallery.filter(item => item.url)
     };
 
-    let newProjectsList;
-    if (selectedProject) {
-      // Update
-      newProjectsList = projects.map(p => p.id === selectedProject.id ? updatedProject : p);
-    } else {
-      // Add
-      newProjectsList = [updatedProject, ...projects];
-    }
+    try {
+      const docRef = doc(db, "projects", updatedProject.id);
+      await setDoc(docRef, updatedProject);
 
-    saveStoredProjects(newProjectsList);
-    setProjects(newProjectsList);
-    setSelectedProject(updatedProject);
-    alert("Project saved successfully!");
+      let newProjectsList;
+      if (selectedProject) {
+        // Update local list state
+        newProjectsList = projects.map(p => p.id === selectedProject.id ? updatedProject : p);
+      } else {
+        // Add local list state
+        newProjectsList = [updatedProject, ...projects];
+      }
+
+      setProjects(newProjectsList);
+      setSelectedProject(updatedProject);
+      alert("Project saved to database successfully!");
+    } catch (err) {
+      console.error("Error saving to Firestore:", err);
+      alert("Failed to save project to database: " + err.message);
+    }
   };
 
   // Delete Project
-  const handleDeleteProject = (projectId) => {
+  const handleDeleteProject = async (projectId) => {
     if (window.confirm("Are you sure you want to delete this project? This action cannot be undone.")) {
-      const newProjectsList = projects.filter(p => p.id !== projectId);
-      saveStoredProjects(newProjectsList);
-      setProjects(newProjectsList);
-      setSelectedProject(null);
-      setIsEditing(false);
+      try {
+        const docRef = doc(db, "projects", projectId);
+        await deleteDoc(docRef);
+
+        const newProjectsList = projects.filter(p => p.id !== projectId);
+        setProjects(newProjectsList);
+        setSelectedProject(null);
+        setIsEditing(false);
+        alert("Project deleted from database successfully!");
+      } catch (err) {
+        console.error("Error deleting from Firestore:", err);
+        alert("Failed to delete project: " + err.message);
+      }
     }
   };
 
-  // Reset to default portfolio projects
-  const handleResetToDefaults = () => {
-    if (window.confirm("Are you sure you want to reset the portfolio? All your custom edits will be replaced with default Hyderabad project photos (including the ones from folders 1 and 2).")) {
-      saveStoredProjects(defaultProjects);
-      setProjects(defaultProjects);
-      setSelectedProject(null);
-      setIsEditing(false);
-      alert("Portfolio reset to default successfully!");
+  // Reset database to default portfolio projects
+  const handleResetToDefaults = async () => {
+    if (window.confirm("Are you sure you want to reset the database portfolio? All custom changes will be replaced with defaults.")) {
+      try {
+        const querySnapshot = await getDocs(collection(db, "projects"));
+        const batch = writeBatch(db);
+        querySnapshot.docs.forEach((doc) => {
+          batch.delete(doc.ref);
+        });
+        await batch.commit();
+
+        await initializeFirestoreProjects();
+        setSelectedProject(null);
+        setIsEditing(false);
+        alert("Database portfolio reset to defaults successfully!");
+      } catch (err) {
+        console.error("Error resetting database:", err);
+        alert("Failed to reset database portfolio: " + err.message);
+      }
     }
   };
 
@@ -244,55 +295,36 @@ const AdminPage = ({ onNavigate }) => {
       return;
     }
 
-    const currentHash = localStorage.getItem('admin_password_hash') || DEFAULT_PASSWORD_HASH;
-    const oldHash = await hashPassword(oldPassword);
-
-    if (oldHash !== currentHash) {
-      setPasswordError('Incorrect old password');
-      return;
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        await updatePassword(user, newPassword);
+        setPasswordSuccess('Password successfully updated!');
+        setOldPassword('');
+        setNewPassword('');
+        setConfirmNewPassword('');
+        
+        // Clear success message and close modal after delay
+        setTimeout(() => {
+          setShowPasswordModal(false);
+          setPasswordSuccess('');
+        }, 1500);
+      } else {
+        setPasswordError('No authenticated user found');
+      }
+    } catch (err) {
+      console.error("Failed to update password:", err);
+      setPasswordError('Failed to update password: ' + err.message + '. (If this fails, try logging out and logging back in to re-authenticate.)');
     }
-
-    const newHash = await hashPassword(newPassword);
-    localStorage.setItem('admin_password_hash', newHash);
-    setPasswordSuccess('Password successfully updated!');
-    setOldPassword('');
-    setNewPassword('');
-    setConfirmNewPassword('');
-    
-    // Clear success message and close modal after delay
-    setTimeout(() => {
-      setShowPasswordModal(false);
-      setPasswordSuccess('');
-    }, 1500);
   };
 
-  // Helper to serialize and format projects code
-  const generateExportCode = () => {
-    return `export const defaultProjects = ${JSON.stringify(projects, null, 2)};\n`;
-  };
-
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText(generateExportCode())
-      .then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      })
-      .catch((err) => {
-        console.error('Clipboard copy failed: ', err);
-        // Fallback for browsers/contexts that don't support navigator.clipboard
-        const textarea = document.getElementById('export-code-textarea');
-        if (textarea) {
-          textarea.select();
-          try {
-            document.execCommand('copy');
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-          } catch (e) {
-            alert('Failed to copy code automatically. Please select all text and copy manually.');
-          }
-        }
-      });
-  };
+  if (isLoading) {
+    return (
+      <div className="container" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="mono" style={{ color: 'var(--accent)' }}>Connecting to Secure Gateway...</div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return (
@@ -311,12 +343,12 @@ const AdminPage = ({ onNavigate }) => {
             borderRadius: '4px'
           }}
         >
-          <div className="mono" style={{ color: 'var(--accent)', marginBottom: '0.5rem', textAlign: 'center' }}>Secure Gateway</div>
+          <div className="mono" style={{ color: 'var(--accent)', marginBottom: '0.5rem', textAlign: 'center' }}>Secure Database Gateway</div>
           <h2 style={{ fontFamily: 'var(--font-display)', textAlign: 'center', marginBottom: '2rem', fontSize: '2rem' }}>Admin Control Panel</h2>
           
           <form onSubmit={handleLogin}>
             <div style={{ marginBottom: '1.5rem' }}>
-              <label className="mono" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.7rem' }}>Username</label>
+              <label className="mono" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.7rem' }}>Username / Email</label>
               <input 
                 type="text" 
                 value={username}
@@ -331,6 +363,7 @@ const AdminPage = ({ onNavigate }) => {
                   outline: 'none',
                   borderRadius: '2px'
                 }}
+                placeholder="e.g. admin"
                 required
               />
             </div>
@@ -371,7 +404,7 @@ const AdminPage = ({ onNavigate }) => {
           </form>
 
           <p style={{ fontSize: '0.75rem', color: 'var(--muted)', textAlign: 'center', marginTop: '2rem', lineHeight: '1.4' }}>
-            Warning: Unauthorized access attempts are monitored and logged. Stored hash validation is strictly enforced.
+            Warning: Remote database writes are protected by Firestore security rules. Authentication is required.
           </p>
         </motion.div>
       </div>
@@ -387,13 +420,10 @@ const AdminPage = ({ onNavigate }) => {
         </div>
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <button onClick={() => setShowPasswordModal(true)} className="btn btn-secondary" style={{ padding: '0.75rem 1.5rem' }}>
-            Change Secret
-          </button>
-          <button onClick={() => setShowExportModal(true)} className="btn btn-secondary" style={{ padding: '0.75rem 1.5rem' }}>
-            Export Code
+            Change Password
           </button>
           <button onClick={handleResetToDefaults} className="btn" style={{ padding: '0.75rem 1.5rem', borderColor: 'var(--accent)', color: 'var(--accent)' }}>
-            Reset Portfolio
+            Reset Database
           </button>
           <button onClick={handleLogout} className="btn btn-primary" style={{ padding: '0.75rem 1.5rem' }}>
             Logout
@@ -706,17 +736,6 @@ const AdminPage = ({ onNavigate }) => {
               
               <form onSubmit={handleChangePassword}>
                 <div style={{ marginBottom: '1rem' }}>
-                  <label className="mono" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.7rem' }}>Old Password</label>
-                  <input 
-                    type="password" 
-                    value={oldPassword}
-                    onChange={(e) => setOldPassword(e.target.value)}
-                    style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--border)', background: 'var(--bg)', color: 'var(--fg)', outline: 'none' }}
-                    required
-                  />
-                </div>
-
-                <div style={{ marginBottom: '1rem' }}>
                   <label className="mono" style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.7rem' }}>New Password</label>
                   <input 
                     type="password" 
@@ -746,89 +765,10 @@ const AdminPage = ({ onNavigate }) => {
                     Cancel
                   </button>
                   <button type="submit" className="btn btn-primary" style={{ padding: '0.5rem 1.5rem' }}>
-                    Update Hash
+                    Update Password
                   </button>
                 </div>
               </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Export Portfolio Code Modal */}
-      <AnimatePresence>
-        {showExportModal && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setShowExportModal(false)}
-            style={{
-              position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(4px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem'
-            }}
-          >
-            <motion.div 
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
-              style={{
-                background: 'var(--surface)', border: '1px solid var(--border)', padding: '2.5rem', width: '100%', maxWidth: '750px', borderRadius: '4px', boxShadow: '0 20px 40px rgba(0,0,0,0.15)', display: 'flex', flexDirection: 'column', gap: '1.5rem', maxHeight: '90vh'
-              }}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="export-modal-title"
-            >
-              <div>
-                <span className="mono" style={{ color: 'var(--accent)' }}>Database Synchronization</span>
-                <h3 id="export-modal-title" style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', marginTop: '0.25rem' }}>Export Portfolio Code</h3>
-              </div>
-
-              <div style={{ fontSize: '0.85rem', color: 'var(--muted)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <p>Since this site is hosted statically on Firebase, changes made here are saved to your local browser storage. To synchronize your updates globally across all devices and clients:</p>
-                <ol style={{ paddingLeft: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', listStyleType: 'decimal' }}>
-                  <li>Click <strong>Copy Code</strong> below to copy the new configuration code to your clipboard.</li>
-                  <li>Open the project file <code>src/data/defaultProjects.js</code> in your code editor.</li>
-                  <li>Replace the entire file content with the copied code and save the file.</li>
-                  <li>Commit and push the changes to GitHub (e.g., <code>git commit -am "update portfolio" && git push origin master</code>).</li>
-                  <li>GitHub Actions will build and deploy the new portfolio data to Firebase Hosting automatically.</li>
-                </ol>
-                <p style={{ marginTop: '0.5rem', fontStyle: 'italic', borderLeft: '3px solid var(--accent)', paddingLeft: '0.75rem' }}>
-                  <strong>Note for other devices:</strong> If you are logged into the admin dashboard on other devices, click the <strong>Reset Portfolio</strong> button on those devices to clear outdated cache and load the newly deployed defaults.
-                </p>
-              </div>
-
-              <div style={{ position: 'relative' }}>
-                <textarea
-                  id="export-code-textarea"
-                  readOnly
-                  value={generateExportCode()}
-                  onClick={(e) => e.target.select()}
-                  style={{
-                    width: '100%',
-                    height: '200px',
-                    padding: '1rem',
-                    border: '1px solid var(--border)',
-                    background: 'var(--bg)',
-                    color: 'var(--fg)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.75rem',
-                    borderRadius: '2px',
-                    resize: 'none',
-                    outline: 'none',
-                    whiteSpace: 'pre'
-                  }}
-                />
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
-                <button type="button" onClick={() => setShowExportModal(false)} className="btn" style={{ padding: '0.65rem 1.5rem' }}>
-                  Close
-                </button>
-                <button type="button" onClick={handleCopyCode} className="btn btn-primary" style={{ padding: '0.65rem 2rem' }}>
-                  {copied ? '✓ Copied!' : 'Copy Code'}
-                </button>
-              </div>
             </motion.div>
           </motion.div>
         )}

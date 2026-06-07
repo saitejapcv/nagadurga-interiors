@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
-import { getStoredProjects } from './AdminPage';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
+import { defaultProjects } from '../data/defaultProjects';
 
 const statItems = [
   { value: 420, suffix: '+', label: 'Projects Completed in Hyderabad' },
@@ -42,9 +44,24 @@ const BhkLanding = ({ onNavigate }) => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    const allProjects = getStoredProjects();
-    const filtered = allProjects.filter(p => p.tags && p.tags.includes('2bhk')).slice(0, 3);
-    setProjects(filtered);
+    const fetchBhkProjects = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "projects"));
+        let allProjects = [];
+        if (querySnapshot.empty) {
+          allProjects = defaultProjects;
+        } else {
+          allProjects = querySnapshot.docs.map(doc => doc.data());
+        }
+        const filtered = allProjects.filter(p => p.tags && p.tags.includes('2bhk')).slice(0, 3);
+        setProjects(filtered);
+      } catch (err) {
+        console.error("Error loading projects in BhkLanding:", err);
+        const filtered = defaultProjects.filter(p => p.tags && p.tags.includes('2bhk')).slice(0, 3);
+        setProjects(filtered);
+      }
+    };
+    fetchBhkProjects();
   }, []);
 
   return (
