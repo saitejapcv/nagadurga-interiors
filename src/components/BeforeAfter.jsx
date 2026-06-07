@@ -1,63 +1,239 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 const BeforeAfter = () => {
+  const [position, setPosition] = useState(50);
   const containerRef = useRef(null);
-  const beforeRef = useRef(null);
-  const handleRef = useRef(null);
-  const isDragging = useRef(false);
+  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
+  const [hasAnimated, setHasAnimated] = useState(false);
 
-  const updateSlider = useCallback((clientX) => {
+  // Run a fancy preview sweep animation when the component enters the viewport
+  useEffect(() => {
+    if (isInView && !hasAnimated) {
+      // Settle at 50% after a quick visual cue to the user
+      setTimeout(() => setPosition(80), 300);
+      setTimeout(() => setPosition(20), 800);
+      setTimeout(() => {
+        setPosition(50);
+        setHasAnimated(true);
+      }, 1300);
+    }
+  }, [isInView, hasAnimated]);
+
+  const handleMove = (clientX) => {
     const container = containerRef.current;
     if (!container) return;
     const rect = container.getBoundingClientRect();
     const x = clientX - rect.left;
     const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    if (handleRef.current) handleRef.current.style.left = percent + '%';
-    if (beforeRef.current) beforeRef.current.style.width = percent + '%';
-  }, []);
-
-  const handleMouseDown = () => { isDragging.current = true; };
-  const handleMouseUp = () => { isDragging.current = false; };
-  const handleMouseMove = (e) => {
-    if (isDragging.current || e.buttons === 1) updateSlider(e.clientX);
+    setPosition(percent);
   };
-  const handleTouchMove = (e) => updateSlider(e.touches[0].clientX);
+
+  const handleTouchMove = (e) => {
+    handleMove(e.touches[0].clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    if (e.buttons === 1) { // Dragging with left mouse button
+      handleMove(e.clientX);
+    }
+  };
+
+  const handleClick = (e) => {
+    handleMove(e.clientX);
+  };
 
   return (
-    <section className="ba-section">
+    <section className="ba-section" style={{ background: 'var(--bg)', padding: '6rem 0', overflow: 'hidden' }}>
       <div className="container">
-        <div className="mono" style={{ textAlign: 'center', marginBottom: '1rem' }}>
-          Results / Before & After
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <span className="mono" style={{ color: 'var(--accent)', display: 'block', marginBottom: '0.75rem' }}>
+            Interactive Gallery / Before & After
+          </span>
+          <h2 style={{ 
+            fontFamily: 'var(--font-display)', 
+            fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', 
+            fontWeight: 400, 
+            lineHeight: 1.2,
+            color: 'var(--fg)' 
+          }}>
+            From Shell to Soul.
+          </h2>
+          <p style={{ color: 'var(--muted)', maxWidth: '500px', margin: '1rem auto 0', fontSize: '0.95rem' }}>
+            Drag the slider or click anywhere on the frame to see our design transformation of a raw concrete shell in Kondapur.
+          </p>
         </div>
-        <h2 style={{ textAlign: 'center', fontSize: 'clamp(2rem, 5vw, 3rem)', marginBottom: '1rem', fontFamily: 'var(--font-display)', fontWeight: 400 }}>
-          From Shell to Soul.
-        </h2>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          style={{ maxWidth: '950px', margin: '0 auto' }}
         >
+          {/* Main Fancy Slider Container */}
           <div
             ref={containerRef}
-            className="ba-container"
+            onClick={handleClick}
             onMouseMove={handleMouseMove}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
             onTouchMove={handleTouchMove}
+            style={{
+              position: 'relative',
+              width: '100%',
+              aspectRatio: '16/10',
+              overflow: 'hidden',
+              border: '1px solid var(--border)',
+              boxShadow: '0 20px 45px rgba(0,0,0,0.06)',
+              cursor: 'ew-resize',
+              userSelect: 'none',
+              background: '#e5e5e5'
+            }}
           >
-            <div className="ba-image ba-after">
-              <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80" alt="After — fully furnished interior" loading="lazy" />
+            {/* AFTER IMAGE (Background - Full) */}
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+              <img 
+                src="/Photos/1/Bedroom/Master_bedroom.jpeg" 
+                alt="After - Fully completed Master Bedroom by Nagadurga Interiors" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover', pointerEvents: 'none' }} 
+              />
             </div>
-            <div className="ba-image ba-before" ref={beforeRef}>
-              <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1920&q=80" alt="Before — empty raw space" loading="lazy" />
+
+            {/* BEFORE IMAGE (Foreground - Clipped width) */}
+            <div 
+              style={{ 
+                position: 'absolute', 
+                top: 0, 
+                left: 0, 
+                height: '100%', 
+                width: `${position}%`,
+                zIndex: 2, 
+                overflow: 'hidden',
+                borderRight: '2px solid white'
+              }}
+            >
+              <img 
+                src="/Photos/before.jpeg" 
+                alt="Before - Empty raw concrete shell" 
+                style={{ 
+                  width: containerRef.current ? containerRef.current.getBoundingClientRect().width : '100vw', 
+                  height: '100%', 
+                  objectFit: 'cover', 
+                  pointerEvents: 'none',
+                  maxWidth: 'none'
+                }} 
+              />
             </div>
-            <div className="ba-handle" ref={handleRef}></div>
-            <div className="ba-label" style={{ left: '1.5rem' }}>Before</div>
-            <div className="ba-label" style={{ right: '1.5rem' }}>After</div>
+
+            {/* Floating Labels */}
+            <div style={{
+              position: 'absolute',
+              top: '1.5rem',
+              left: '1.5rem',
+              zIndex: 4,
+              background: 'rgba(0, 0, 0, 0.6)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              color: '#fff',
+              padding: '0.4rem 1rem',
+              fontSize: '0.7rem',
+              fontFamily: 'var(--font-mono)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em'
+            }}>
+              Raw Shell
+            </div>
+
+            <div style={{
+              position: 'absolute',
+              top: '1.5rem',
+              right: '1.5rem',
+              zIndex: 4,
+              background: 'var(--accent)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              color: '#fff',
+              padding: '0.4rem 1rem',
+              fontSize: '0.7rem',
+              fontFamily: 'var(--font-mono)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em'
+            }}>
+              Nagadurga Design
+            </div>
+
+            {/* Bottom-Center Info Badge */}
+            <div style={{
+              position: 'absolute',
+              bottom: '1.5rem',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 4,
+              background: 'rgba(255, 255, 255, 0.85)',
+              backdropFilter: 'blur(12px)',
+              border: '1px solid var(--border)',
+              color: 'var(--fg)',
+              padding: '0.6rem 1.5rem',
+              fontSize: '0.75rem',
+              fontFamily: 'var(--font-mono)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              whiteSpace: 'nowrap'
+            }}>
+              <span>Kondapur Suite</span>
+              <span style={{ color: 'var(--accent)' }}>•</span>
+              <span>45 Days Handover</span>
+            </div>
+
+            {/* Slider Handle (Central vertical divider) */}
+            <div 
+              style={{
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                left: `${position}%`,
+                width: '0',
+                zIndex: 3,
+                pointerEvents: 'none'
+              }}
+            >
+              {/* Pulsating Center Button */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '0',
+                  transform: 'translate(-50%, -50%)',
+                  width: '46px',
+                  height: '46px',
+                  borderRadius: '50%',
+                  background: '#fff',
+                  border: '1px solid var(--border)',
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'ew-resize'
+                }}
+              >
+                <span style={{ 
+                  color: 'var(--accent)', 
+                  fontSize: '0.9rem', 
+                  fontWeight: 'bold', 
+                  fontFamily: 'monospace',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transform: 'translateY(-1px)'
+                }}>
+                  ↔
+                </span>
+              </div>
+            </div>
+
           </div>
         </motion.div>
       </div>
