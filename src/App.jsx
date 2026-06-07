@@ -15,6 +15,24 @@ import WhatsAppWidget from './components/WhatsAppWidget';
 import Footer from './components/Footer';
 import AdminPage from './components/AdminPage';
 
+const cleanPaths = {
+  '/portfolio': '/#/portfolio',
+  '/portfolio/': '/#/portfolio',
+  '/calculator': '/#/calculator',
+  '/calculator/': '/#/calculator',
+  '/price-tool': '/#/calculator',
+  '/price-tool/': '/#/calculator',
+  '/hyderabad': '/#/hyderabad',
+  '/hyderabad/': '/#/hyderabad',
+  '/admin': '/#/admin',
+  '/admin/': '/#/admin',
+};
+
+const currentPath = window.location.pathname;
+if (cleanPaths[currentPath]) {
+  window.history.replaceState({}, '', cleanPaths[currentPath]);
+}
+
 function getPageFromHash() {
   const hash = window.location.hash.replace('#/', '').replace('#', '');
   if (hash) {
